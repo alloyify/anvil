@@ -12,6 +12,7 @@
     "lint": "turbo run lint",
     "lint:staged": "lint-staged",
     "prepare": "husky install",
+    "reinstall": "rimraf ./**/node_modules && pnpm install",
     "test": "turbo run test"
   },
   "devDependencies": {
@@ -34,6 +35,7 @@
     "rimraf": "latest",
     "ts-jest": "27.1.4",
     "tsconfig-extends": "1.0.1",
+    "tslib": "2.4.0",
     "turbo": "latest",
     "typescript": "4.6.4"
   },

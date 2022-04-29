@@ -1,9 +1,38 @@
 {
   "name": "@alloyify/anvil",
+  "description": "Alloyify Anvil package",
   "version": "0.0.0",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "repository": "https://github.com/alloyify/anvil",
+  "publishConfig": {
+    "access": "restricted"
+  },
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md"
+  ],
+  "author": {
+    "name": "Michael Yali",
+    "email": "mihon4ik@gmail.com"
+  },
   "scripts": {
     "build": "tsc",
     "lint": "eslint . --fix",
     "test": "jest"
+  },
+  "dependencies": {
+    "@nrwl/devkit": "14.0.5",
+    "@nrwl/tao": "14.0.5",
+    "fs-extra": "10.1.0",
+    "lodash": "4.17.21",
+    "nx": "14.0.5",
+    "typescript": "4.6.4"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "9.0.13",
+    "@types/lodash": "4.14.182"
   }
 }
