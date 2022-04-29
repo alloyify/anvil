@@ -1,9 +1,9 @@
 {
   "extends": "./../../tsconfig.json",
   "compilerOptions": {
-    "baseUrl": "./",
-    "outDir": "./dist"
+    "baseUrl": ".",
+    "outDir": "dist"
   },
   "include": ["*.ts", "**/*.ts"],
-  "exclude": ["./dist", "./.turbo", "**/*.spec.ts"]
+  "exclude": ["dist", ".turbo", "**/*.spec.ts"]
 }
