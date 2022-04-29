@@ -2,6 +2,7 @@
 /**/node_modules
 .pnp
 .pnp.js
+/**/.pnpm-debug.log
 
 # IDE
 /.idea
@@ -16,4 +17,6 @@
 
 # misc
 .npmrc
+/**/.turbo
+/packages/**/dist
 

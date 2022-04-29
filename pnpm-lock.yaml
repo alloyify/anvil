@@ -4,13 +4,23 @@ importers:
 
   .:
     specifiers:
+      '@types/node': 17.0.30
+      prettier: 2.6.2
       rimraf: latest
       turbo: latest
+      typescript: 4.6.4
     devDependencies:
+      '@types/node': 17.0.30
+      prettier: 2.6.2
       rimraf: 3.0.2
       turbo: 1.2.5
+      typescript: 4.6.4
 
 packages:
+
+  /@types/node/17.0.30:
+    resolution: {integrity: sha512-oNBIZjIqyHYP8VCNAV9uEytXVeXG2oR0w9lgAXro20eugRQfY002qr3CUl6BAe+Yf/z3CRjPdz27Pu6WWtuSRw==}
+    dev: true
 
   /balanced-match/1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
@@ -68,6 +78,12 @@ packages:
   /path-is-absolute/1.0.1:
     resolution: {integrity: sha1-F0uSaHNVNP+8es5r9TpanhtcX18=}
     engines: {node: '>=0.10.0'}
+    dev: true
+
+  /prettier/2.6.2:
+    resolution: {integrity: sha512-PkUpF+qoXTqhOeWL9fu7As8LXsIUZ1WYaJiY/a7McAQzxjk82OF0tibkFXVCDImZtWxbvojFjerkiLb0/q8mew==}
+    engines: {node: '>=10.13.0'}
+    hasBin: true
     dev: true
 
   /rimraf/3.0.2:
@@ -190,6 +206,12 @@ packages:
       turbo-linux-ppc64le: 1.2.5
       turbo-windows-32: 1.2.5
       turbo-windows-64: 1.2.5
+    dev: true
+
+  /typescript/4.6.4:
+    resolution: {integrity: sha512-9ia/jWHIEbo49HfjrLGfKbZSuWo9iTMwXO+Ca3pRsSpbsMbc7/IU8NKdCZVRRBafVPGnoJeFL76ZOAA84I9fEg==}
+    engines: {node: '>=4.2.0'}
+    hasBin: true
     dev: true
 
   /wrappy/1.0.2:
