@@ -7,6 +7,7 @@
   ],
   "scripts": {
     "build": "turbo run build",
+    "format": "prettier --write \"**/*.{ts,md}\"",
     "format:staged": "pretty-quick --pattern \"packages/**/*.*(ts|md)\"",
     "lint": "turbo run lint",
     "lint:staged": "lint-staged",
