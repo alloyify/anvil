@@ -18,6 +18,5 @@
     "strict": true,
     "strictNullChecks": false,
     "types": ["node"]
-  },
-  "exclude": ["./node_modules", "./**/node_modules", "./**/*.spec.ts"]
+  }
 }

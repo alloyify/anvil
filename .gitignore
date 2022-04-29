@@ -13,7 +13,7 @@
 .DS_Store
 
 # tests
-/coverage
+/**/coverage
 
 # misc
 .npmrc
