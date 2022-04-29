@@ -1,0 +1,19 @@
+# dependencies
+/**/node_modules
+.pnp
+.pnp.js
+
+# IDE
+/.idea
+/.awcache
+/.vscode
+
+# misc
+.DS_Store
+
+# tests
+/coverage
+
+# misc
+.npmrc
+

@@ -1,0 +1,14 @@
+{
+  "name": "alloyify",
+  "description": "Alloyify Anvil",
+  "private": "true",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {},
+  "devDependencies": {
+    "rimraf": "latest",
+    "turbo": "latest"
+  },
+  "packageManager": "pnpm@7.0.0-rc.9"
+}
