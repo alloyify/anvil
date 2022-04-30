@@ -4,6 +4,9 @@
       "dependsOn": ["^build"],
       "outputs": ["dist/**"]
     },
+    "link:global": {
+      "outputs": []
+    },
     "lint": {
       "outputs": []
     },

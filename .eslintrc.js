@@ -51,6 +51,8 @@ module.exports = {
     '@typescript-eslint/no-empty-function': 'off',
     '@typescript-eslint/no-non-null-assertion': 'off',
     '@typescript-eslint/no-var-requires': 'off',
+    'global-require': 'off',
+    'import/no-dynamic-require': 'off',
     'import/prefer-default-export': 'off',
   },
 };

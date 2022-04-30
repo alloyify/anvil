@@ -1,0 +1,33 @@
+{
+  "name": "@alloyify/schematics-turborepo",
+  "description": "Alloyify Turborepo Schematics package",
+  "version": "0.0.0",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "repository": "https://github.com/alloyify/anvil",
+  "publishConfig": {
+    "access": "restricted"
+  },
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md"
+  ],
+  "author": {
+    "name": "Mykhaylo Yali",
+    "email": "mihon4ik@gmail.com"
+  },
+  "schematics": "./dist/generators.json",
+  "scripts": {
+    "build": "tsc && pnpm run copy:jsons && pnpm run copy:templates",
+    "copy:jsons": "cpx lib/generators.json dist && cpx 'lib/generators/**/schema.json' dist/generators",
+    "copy:templates": "cpx 'lib/generators/**/{files,files-project-root,workspace}/**/*.*' dist/generators && cpx 'lib/generators/**/{files,files-project-root,workspace}/**/.!(gitignore)' dist/generators",
+    "lint": "eslint . --fix",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@alloyify/devkit": "workspace:0.0.0"
+  },
+  "devDependencies": {}
+}

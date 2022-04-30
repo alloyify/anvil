@@ -1,0 +1,23 @@
+{
+  "name": "alloyify/schematics-turborepo",
+  "version": "0.0.0",
+  "extends": ["@nrwl/workspace"],
+  "schematics": {
+    "package": {
+      "factory": "./generators/package/package#packageSchematic",
+      "schema": "./generators/package/schema.json",
+      "aliases": ["pkg"],
+      "x-type": "package",
+      "description": "Create a Turborepo package."
+    }
+  },
+  "generators": {
+    "package": {
+      "factory": "./generators/package/package",
+      "schema": "./generators/package/schema.json",
+      "aliases": ["pkg"],
+      "x-type": "package",
+      "description": "Create a Turborepo package."
+    }
+  }
+}

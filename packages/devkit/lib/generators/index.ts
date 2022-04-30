@@ -1,1 +1,1 @@
-export * from './generators.runner';
+export * from '@nrwl/devkit';

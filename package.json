@@ -9,6 +9,7 @@
     "build": "turbo run build",
     "format": "prettier --write \"**/*.{ts,md}\"",
     "format:staged": "pretty-quick --pattern \"packages/**/*.*(ts|md)\"",
+    "link:global": "turbo run link:global",
     "lint": "turbo run lint",
     "lint:staged": "lint-staged",
     "prepare": "husky install",

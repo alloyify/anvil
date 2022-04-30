@@ -9,6 +9,9 @@
   "publishConfig": {
     "access": "restricted"
   },
+  "bin": {
+    "anvil": "dist/bin/anvil.js"
+  },
   "files": [
     "dist",
     "LICENSE",
@@ -20,19 +23,21 @@
   },
   "scripts": {
     "build": "tsc",
+    "link:global": "pnpm link --global",
     "lint": "eslint . --fix",
     "test": "jest"
   },
   "dependencies": {
-    "@nrwl/devkit": "14.0.5",
-    "@nrwl/tao": "14.0.5",
-    "fs-extra": "10.1.0",
+    "@alloyify/devkit": "workspace:0.0.0",
+    "@alloyify/schematics-turborepo": "workspace:0.0.0",
+    "chalk": "4.1.2",
+    "commander": "9.2.0",
+    "inquirer": "8.2.4",
     "lodash": "4.17.21",
-    "nx": "14.0.5",
-    "typescript": "4.6.4"
+    "npmlog": "6.0.2"
   },
   "devDependencies": {
-    "@types/fs-extra": "9.0.13",
-    "@types/lodash": "4.14.182"
+    "@types/lodash": "4.14.182",
+    "@types/npmlog": "4.1.4"
   }
 }

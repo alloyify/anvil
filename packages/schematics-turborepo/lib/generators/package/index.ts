@@ -1,0 +1,1 @@
+export { packageGenerator } from './package';
