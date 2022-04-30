@@ -1,6 +1,6 @@
 {
-  "name": "@alloyify/anvil",
-  "description": "Alloyify Anvil package",
+  "name": "@alloyify/schematics",
+  "description": "Alloyify Schematics package",
   "version": "0.0.0",
   "license": "MIT",
   "main": "dist/index.js",
@@ -18,8 +18,10 @@
     "name": "Mykhaylo Yali",
     "email": "mihon4ik@gmail.com"
   },
+  "schematics": "./dist/generators.json",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && pnpm run copy:generators",
+    "copy:generators": "cpx lib/generators.json dist",
     "lint": "eslint . --fix",
     "test": "jest"
   },

@@ -1,6 +1,6 @@
 {
-  "name": "@alloyify/anvil",
-  "description": "Alloyify Anvil package",
+  "name": "@alloyify/devkit",
+  "description": "Alloyify DevKit package",
   "version": "0.0.0",
   "license": "MIT",
   "main": "dist/index.js",

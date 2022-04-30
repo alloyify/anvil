@@ -1,0 +1,23 @@
+{
+  "name": "alloyify/schematics",
+  "version": "0.0.0",
+  "extends": ["@nrwl/workspace"],
+  "schematics": {
+    "application": {
+      "factory": "./generators/application/application#applicationSchematic",
+      "schema": "./generators/application/schema.json",
+      "aliases": ["app"],
+      "x-type": "application",
+      "description": "Create a NestJS application."
+    }
+  },
+  "generators": {
+    "application": {
+      "factory": "./generators/application/application",
+      "schema": "./generators/application/schema.json",
+      "aliases": ["app"],
+      "x-type": "application",
+      "description": "Create a NestJS application."
+    }
+  }
+}
