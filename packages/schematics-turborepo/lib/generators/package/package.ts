@@ -1,9 +1,8 @@
-import { convertNxGenerator, Tree } from '@alloyify/devkit';
+import { convertNxGenerator, logger, Tree } from '@alloyify/devkit';
+import { LOG_PREFIX } from '../../constants';
 
 export async function packageGenerator(tree: Tree, options: any): Promise<any> {
-  console.log(options);
-
-  console.log(tree);
+  logger.info(LOG_PREFIX, 'running package generator');
   return tree;
 }
 

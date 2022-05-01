@@ -30,14 +30,11 @@
   "dependencies": {
     "@alloyify/devkit": "workspace:0.0.0",
     "@alloyify/schematics-turborepo": "workspace:0.0.0",
-    "chalk": "4.1.2",
     "commander": "9.2.0",
     "inquirer": "8.2.4",
-    "lodash": "4.17.21",
-    "npmlog": "6.0.2"
+    "lodash": "4.17.21"
   },
   "devDependencies": {
-    "@types/lodash": "4.14.182",
-    "@types/npmlog": "4.1.4"
+    "@types/lodash": "4.14.182"
   }
 }

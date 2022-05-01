@@ -57,23 +57,17 @@ importers:
       '@alloyify/devkit': workspace:0.0.0
       '@alloyify/schematics-turborepo': workspace:0.0.0
       '@types/lodash': 4.14.182
-      '@types/npmlog': 4.1.4
-      chalk: 4.1.2
       commander: 9.2.0
       inquirer: 8.2.4
       lodash: 4.17.21
-      npmlog: 6.0.2
     dependencies:
       '@alloyify/devkit': link:../devkit
       '@alloyify/schematics-turborepo': link:../schematics-turborepo
-      chalk: 4.1.2
       commander: 9.2.0
       inquirer: 8.2.4
       lodash: 4.17.21
-      npmlog: 6.0.2
     devDependencies:
       '@types/lodash': 4.14.182
-      '@types/npmlog': 4.1.4
 
   packages/devkit:
     specifiers:
@@ -81,22 +75,28 @@ importers:
       '@nrwl/tao': 14.0.5
       '@types/fs-extra': 9.0.13
       '@types/lodash': 4.14.182
+      '@types/npmlog': 4.1.4
+      chalk: 4.1.2
       fs-extra: 10.1.0
       lodash: 4.17.21
+      npmlog: 6.0.2
       nx: 14.0.5
       safe-require: 1.0.4
       typescript: 4.6.4
     dependencies:
       '@nrwl/devkit': 14.0.5_nx@14.0.5
       '@nrwl/tao': 14.0.5_typescript@4.6.4
+      chalk: 4.1.2
       fs-extra: 10.1.0
       lodash: 4.17.21
+      npmlog: 6.0.2
       nx: 14.0.5_typescript@4.6.4
       safe-require: 1.0.4
       typescript: 4.6.4
     devDependencies:
       '@types/fs-extra': 9.0.13
       '@types/lodash': 4.14.182
+      '@types/npmlog': 4.1.4
 
   packages/schematics-turborepo:
     specifiers:
@@ -2899,7 +2899,6 @@ packages:
       minimatch: 3.0.4
       once: 1.4.0
       path-is-absolute: 1.0.1
-    dev: false
 
   /glob/7.2.0:
     resolution: {integrity: sha512-lmLf6gtyrPq8tTjSmrO94wBeQbFR3HbLHbuyD69wuyQkImp2hWqMGB47OX65FBkPffO641IP9jWa1z4ivqG26Q==}
@@ -2910,6 +2909,7 @@ packages:
       minimatch: 3.1.2
       once: 1.4.0
       path-is-absolute: 1.0.1
+    dev: true
 
   /glob2base/0.0.12:
     resolution: {integrity: sha1-nUGbPijxLoOjYhZKJ3BVkiycDVY=}
@@ -4336,7 +4336,6 @@ packages:
     resolution: {integrity: sha512-yJHVQEhyqPLUTgt9B83PXu6W3rx4MvvHvSUvToogpwoGDOUQ+yDrR0HRot+yOCdCO7u4hX3pWft6kWBBcqh0UA==}
     dependencies:
       brace-expansion: 1.1.11
-    dev: false
 
   /minimatch/3.1.2:
     resolution: {integrity: sha512-J7p63hRiAjw1NDEww1W7i37+ByIrOWO5XQQAzZ3VOcL0PNybwpfmV/N05zFAzwQ9USyEcX6t3UO+K5aqBQOIHw==}
@@ -5015,7 +5014,7 @@ packages:
     resolution: {integrity: sha512-JZkJMZkAGFFPP2YqXZXPbMlMBgsxzE8ILs4lMIX/2o0L9UBw9O/Y3o6wFw/i9YLapcUJWwqbi3kdxIPdC62TIA==}
     hasBin: true
     dependencies:
-      glob: 7.2.0
+      glob: 7.1.4
 
   /run-async/2.4.1:
     resolution: {integrity: sha512-tvVnVv01b8c1RrA6Ep7JkStj85Guv/YrMcwqYQnwjsAS2cTmmPGBBjAjpCW7RrSodNSoE2/qg9O4bceNvUuDgQ==}

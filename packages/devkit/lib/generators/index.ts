@@ -1,1 +1,1 @@
-export * from '@nrwl/devkit';
+export * from './nx.devkit';

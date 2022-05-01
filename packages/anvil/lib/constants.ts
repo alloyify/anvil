@@ -1,5 +1,3 @@
-export const ANVIL = 'anvil';
-
 export const GENERATE_COMMAND = 'genearate';
 
 export const NX_SCHEMATICS: Record<string, string> = {

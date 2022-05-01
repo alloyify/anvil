@@ -6,14 +6,17 @@
     "packages/*"
   ],
   "scripts": {
+    "boot": "pnpm clean:node_modules && pnpm install && pnpm build:force",
     "build": "turbo run build",
+    "build:force": "pnpm clean:build && pnpm build --force",
+    "clean:build": "npx rimraf ./packages/**/.turbo ./packages/**/dist",
+    "clean:node_modules": "npx rimraf ./**/node_modules ./pnpm-lock.yaml",
     "format": "prettier --write \"**/*.{ts,md}\"",
     "format:staged": "pretty-quick --pattern \"packages/**/*.*(ts|md)\"",
     "link:global": "turbo run link:global",
     "lint": "turbo run lint",
     "lint:staged": "lint-staged",
     "prepare": "husky install",
-    "reinstall": "rimraf ./**/node_modules && pnpm install",
     "test": "turbo run test"
   },
   "devDependencies": {

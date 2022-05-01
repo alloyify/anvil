@@ -1,8 +1,9 @@
-import { GeneratorsRunner } from '@alloyify/devkit';
+import { GeneratorsRunner, logger } from '@alloyify/devkit';
 import { packageGenerator } from '@alloyify/schematics-turborepo';
 import { Command } from 'commander';
 import { GENERATE_COMMAND, TURBOREPO_SCHEMATICS, TURBOREPO_SCHEMATICS_LIST } from '../../constants';
-import { logger } from '../../utils';
+
+const LOG_PREFIX = 'generate';
 
 export class GenerateTurborepoCommand {
   static load(program: Command): void {
@@ -10,13 +11,14 @@ export class GenerateTurborepoCommand {
       .command(GENERATE_COMMAND)
       .alias('g')
       .argument('<schematic>', `Schematic name. One of: ${TURBOREPO_SCHEMATICS_LIST}`)
-      .argument('[packageName]', 'Package name.')
+      .argument('[name]', 'Package name.')
       .option('-w, --workspace <workspace>', 'Workspace, e.g. "packages"')
-      .action(async (schematic: string, packageName?: string, options?: any) => {
+      .action(async (schematic: string, name?: string, options?: any) => {
         this.validateSchematic(schematic);
         const runner = new GeneratorsRunner(process.cwd());
+
         await runner.execute(packageGenerator, {
-          packageName,
+          name,
           ...options,
         });
       });
