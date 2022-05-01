@@ -1,5 +1,5 @@
 import type { Generator } from '@nrwl/devkit';
-import { FileChange, FsTree } from '@nrwl/tao/src/shared/tree';
+import { FileChange, FsTree, printChanges } from '@nrwl/tao/src/shared/tree';
 import { writeFileSync, ensureDirSync, removeSync, chmodSync } from 'fs-extra';
 import { isFunction } from 'lodash';
 import { dirname, join } from 'path';
@@ -7,11 +7,15 @@ import { dirname, join } from 'path';
 export class GeneratorsRunner {
   constructor(protected cwd: string) {}
 
-  public async execute<T = unknown>(generator: Generator<T>, generatorOptions: T): Promise<void> {
+  public async execute<T = unknown>(generator: Generator<T>, generatorOptions: T, dryRun = false): Promise<void> {
     const host = new FsTree(this.cwd, false);
     const task: any = await generator(host, generatorOptions);
     const changes = host.listChanges();
-    this.applyChanges(changes);
+    printChanges(changes);
+
+    if (!dryRun) {
+      this.applyChanges(changes);
+    }
 
     if (isFunction(task)) {
       await task();

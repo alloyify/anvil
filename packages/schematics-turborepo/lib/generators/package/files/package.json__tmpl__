@@ -1,0 +1,7 @@
+{
+  <% if (scopeT.fileName) { %>
+  "name": "@<%= scopeT.fileName %>/<%= nameT.fileName %>"
+  <% } else { %>
+  "name": "<%= nameT.fileName %>"
+  <% } %>
+}
