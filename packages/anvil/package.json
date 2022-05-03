@@ -32,7 +32,8 @@
     "@alloyify/schematics-turborepo": "workspace:0.0.0",
     "commander": "9.2.0",
     "inquirer": "8.2.4",
-    "lodash": "4.17.21"
+    "lodash": "4.17.21",
+    "pino-pretty": "7.6.1"
   },
   "devDependencies": {}
 }

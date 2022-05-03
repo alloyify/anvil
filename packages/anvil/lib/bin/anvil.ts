@@ -1,14 +1,15 @@
 #!/usr/bin/env node
 
-import { logger, resolveSpaceType } from '@alloyify/devkit';
+import { resolveSpaceType } from '@alloyify/devkit';
 import { Command } from 'commander';
 import { GenerateTurborepoCommand } from '../commands';
-import { loadAnvilPackageJson } from '../utils';
+import { loadAnvilPackageJson, logger } from '../utils';
 
 const spaceType = resolveSpaceType();
 const packageJson = loadAnvilPackageJson();
 const { version } = packageJson;
-logger.notice('cli', `v${version}`);
+
+logger.info(`v${version}`);
 
 const program = new Command();
 

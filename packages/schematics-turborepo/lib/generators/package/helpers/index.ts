@@ -1,2 +1,3 @@
-export * from './create-files';
-export * from './transform-options';
+export * from './create-files.helper';
+export * from './transform-options.helper';
+export * from './validate-options.helper';

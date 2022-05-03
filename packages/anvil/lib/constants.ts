@@ -1,3 +1,5 @@
+export const LOGGER_NAME = 'anvil';
+
 export const GENERATE_COMMAND = 'genearate';
 
 export enum NxSchematics {

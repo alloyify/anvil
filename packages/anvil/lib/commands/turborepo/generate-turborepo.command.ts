@@ -1,4 +1,4 @@
-import { GeneratorsRunner, logger } from '@alloyify/devkit';
+import { GeneratorsRunner } from '@alloyify/devkit';
 import { packageGenerator, PackageGeneratorOptions } from '@alloyify/schematics-turborepo';
 import { Command } from 'commander';
 import * as inquirer from 'inquirer';
@@ -19,24 +19,22 @@ export class GenerateTurborepoCommand {
       .option('--dry-run', 'Dry run.')
       .action(async (schematic: TurborepoSchematics, name?: string, options?: GenerateTurborepoPackageOptions) => {
         this.validateSchematic(schematic);
-        logger.info(GENERATE_COMMAND, `"${schematic}"`);
 
         name = await this.validateName(name);
-        options.scope = await this.validateScope(options.scope);
         options.cwd = this.setCwd(options.cwd);
 
         const runner = new GeneratorsRunner(options.cwd);
 
         switch (schematic) {
           case TurborepoSchematics.package:
-            await runner.execute<PackageGeneratorOptions>(
-              packageGenerator,
-              {
-                name,
-                ...options,
-              },
-              options.dryRun,
-            );
+            // await runner.execute<PackageGeneratorOptions>(
+            //   packageGenerator,
+            //   {
+            //     name,
+            //     ...options,
+            //   },
+            //   options.dryRun,
+            // );
             break;
 
           default:
@@ -47,7 +45,7 @@ export class GenerateTurborepoCommand {
 
   private static validateSchematic(schematic: TurborepoSchematics): void {
     if (!TurborepoSchematics[schematic]) {
-      logger.error(GENERATE_COMMAND, `Invalid schematic name, expected one of: ${TURBOREPO_SCHEMATICS_LIST}`);
+      // logger.error(GENERATE_COMMAND, `Invalid schematic name, expected one of: ${TURBOREPO_SCHEMATICS_LIST}`);
       process.exit(1);
     }
   }
@@ -69,19 +67,5 @@ export class GenerateTurborepoCommand {
       message: 'Please type a package name',
       validate: (val) => !isEmpty(val) && !isNil(val),
     }).then((answers) => answers.name);
-  }
-
-  private static async validateScope(scope: string): Promise<string> {
-    if (scope) {
-      return scope;
-    }
-
-    const prompt = inquirer.createPromptModule();
-
-    return prompt({
-      type: 'input',
-      name: 'scope',
-      message: 'Please type a package scope',
-    }).then((answers) => answers.scope);
   }
 }
