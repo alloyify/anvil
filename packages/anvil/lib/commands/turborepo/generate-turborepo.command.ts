@@ -1,9 +1,10 @@
-import { GeneratorsRunner } from '@alloyify/devkit';
+import { GeneratorsRunner, GeneratorsRunnerType } from '@alloyify/devkit';
 import { packageGenerator, PackageGeneratorOptions } from '@alloyify/schematics-turborepo';
 import { Command } from 'commander';
 import * as inquirer from 'inquirer';
 import { isEmpty, isNil } from 'lodash';
 import { GENERATE_COMMAND, TurborepoSchematics, TURBOREPO_SCHEMATICS_LIST } from '../../constants';
+import { logger } from '../../utils';
 import { GenerateTurborepoPackageOptions } from './interfaces';
 
 export class GenerateTurborepoCommand {
@@ -20,21 +21,21 @@ export class GenerateTurborepoCommand {
       .action(async (schematic: TurborepoSchematics, name?: string, options?: GenerateTurborepoPackageOptions) => {
         this.validateSchematic(schematic);
 
-        name = await this.validateName(name);
-        options.cwd = this.setCwd(options.cwd);
+        name = await this.promptName(name);
+        options.cwd = options.cwd ?? process.cwd();
 
-        const runner = new GeneratorsRunner(options.cwd);
+        const runner = new GeneratorsRunner({
+          cwd: options.cwd,
+          type: GeneratorsRunnerType.ANVIL,
+          dryRun: options.dryRun,
+        });
 
         switch (schematic) {
           case TurborepoSchematics.package:
-            // await runner.execute<PackageGeneratorOptions>(
-            //   packageGenerator,
-            //   {
-            //     name,
-            //     ...options,
-            //   },
-            //   options.dryRun,
-            // );
+            await runner.execute<PackageGeneratorOptions>(packageGenerator, {
+              name,
+              ...options,
+            });
             break;
 
           default:
@@ -45,16 +46,12 @@ export class GenerateTurborepoCommand {
 
   private static validateSchematic(schematic: TurborepoSchematics): void {
     if (!TurborepoSchematics[schematic]) {
-      // logger.error(GENERATE_COMMAND, `Invalid schematic name, expected one of: ${TURBOREPO_SCHEMATICS_LIST}`);
+      logger.error(`Invalid schematic name, expected one of: ${TURBOREPO_SCHEMATICS_LIST}`);
       process.exit(1);
     }
   }
 
-  private static setCwd(cwd: string): string {
-    return cwd ?? process.cwd();
-  }
-
-  private static async validateName(name: string): Promise<string> {
+  private static async promptName(name: string): Promise<string> {
     if (name) {
       return name;
     }

@@ -1,5 +1,4 @@
 import { loadTurboJson, resolveWorkspace } from '@alloyify/devkit';
-import { LOG_PREFIX } from '../../../constants';
 import { PackageGeneratorOptions } from '../schema';
 
 export function validateOptions(options: PackageGeneratorOptions): void {

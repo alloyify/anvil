@@ -9,7 +9,7 @@ const spaceType = resolveSpaceType();
 const packageJson = loadAnvilPackageJson();
 const { version } = packageJson;
 
-logger.info(`v${version}`);
+logger.info(`cli v${version}`);
 
 const program = new Command();
 

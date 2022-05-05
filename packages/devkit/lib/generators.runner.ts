@@ -3,17 +3,40 @@ import { FileChange, FsTree, printChanges } from '@nrwl/tao/src/shared/tree';
 import { writeFileSync, ensureDirSync, removeSync, chmodSync } from 'fs-extra';
 import { isFunction } from 'lodash';
 import { dirname, join } from 'path';
+import { GeneratorsRunnerType } from './constants';
+import { GeneratorsRunnerOptions } from './interfaces';
 
 export class GeneratorsRunner {
-  constructor(protected cwd: string) {}
+  protected options: GeneratorsRunnerOptions;
 
-  public async execute<T = unknown>(generator: Generator<T>, generatorOptions: T, dryRun = false): Promise<void> {
-    const host = new FsTree(this.cwd, false);
-    const task: any = await generator(host, generatorOptions);
+  constructor(options: GeneratorsRunnerOptions) {
+    this.options = {
+      cwd: options.cwd,
+      type: GeneratorsRunnerType.ALLOYIFY,
+      dryRun: false,
+      printChanges: true,
+      ...options,
+    };
+  }
+
+  public async execute<T = unknown>(
+    generator: Generator<T>,
+    generatorOptions: T,
+    options?: Omit<GeneratorsRunnerOptions, 'cwd'>,
+  ): Promise<void> {
+    const host = new FsTree(this.options.cwd, false);
+    const task: any = await generator(host, {
+      ...generatorOptions,
+      dryRun: (generatorOptions as any).dryRun ?? this.options.dryRun,
+      type: (generatorOptions as any).type ?? this.options.type,
+    });
     const changes = host.listChanges();
-    printChanges(changes);
 
-    if (!dryRun) {
+    if (options?.printChanges || this.options.printChanges) {
+      printChanges(changes);
+    }
+
+    if (!options?.dryRun || !this.options.dryRun) {
       this.applyChanges(changes);
     }
 
@@ -24,7 +47,7 @@ export class GeneratorsRunner {
 
   protected applyChanges(fileChanges: FileChange[]): void {
     fileChanges.forEach((f) => {
-      const fpath = join(this.cwd, f.path);
+      const fpath = join(this.options.cwd, f.path);
       if (f.type === 'CREATE') {
         ensureDirSync(dirname(fpath));
         writeFileSync(fpath, f.content);
