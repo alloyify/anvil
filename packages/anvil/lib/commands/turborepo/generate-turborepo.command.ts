@@ -1,4 +1,4 @@
-import { GeneratorsRunner, GeneratorsRunnerType } from '@alloyify/devkit';
+import { CwdConfigs, GeneratorsRunner, GeneratorsRunnerType } from '@alloyify/devkit';
 import { packageGenerator, PackageGeneratorOptions } from '@alloyify/schematics-turborepo';
 import { Command } from 'commander';
 import * as inquirer from 'inquirer';
@@ -8,7 +8,7 @@ import { logger } from '../../utils';
 import { GenerateTurborepoPackageOptions } from './interfaces';
 
 export class GenerateTurborepoCommand {
-  static load(program: Command): void {
+  static load(program: Command, cwdConfigs: CwdConfigs): void {
     program
       .command(GENERATE_COMMAND)
       .alias('g')
@@ -26,14 +26,15 @@ export class GenerateTurborepoCommand {
 
         const runner = new GeneratorsRunner({
           cwd: options.cwd,
-          type: GeneratorsRunnerType.ANVIL,
           dryRun: options.dryRun,
+          runnerType: GeneratorsRunnerType.ANVIL,
         });
 
         switch (schematic) {
           case TurborepoSchematics.package:
             await runner.execute<PackageGeneratorOptions>(packageGenerator, {
               name,
+              cwdConfigs,
               ...options,
             });
             break;

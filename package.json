@@ -11,6 +11,7 @@
     "build:force": "pnpm clean:build && pnpm build --force",
     "clean:build": "npx rimraf ./packages/**/.turbo ./packages/**/dist",
     "clean:node_modules": "npx rimraf ./**/node_modules ./pnpm-lock.yaml",
+    "debug:anvil": "LOG_LEVEL=debug anvil",
     "format": "prettier --write \"**/*.{ts,md}\"",
     "format:staged": "pretty-quick --pattern \"packages/**/*.*(ts|md)\"",
     "link:global": "turbo run link:global",

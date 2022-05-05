@@ -1,3 +1,4 @@
-export * from './cwd-space.type';
+export * from './cwd-configs.interface';
+export * from './generator-base-options.interface';
 export * from './generators-runner-options.interface';
 export * from './transformed-names.type';

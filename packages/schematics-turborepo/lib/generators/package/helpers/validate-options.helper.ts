@@ -1,15 +1,15 @@
-import { loadTurboJson, resolveWorkspace } from '@alloyify/devkit';
+import { loadTurboJson, Logger } from '@alloyify/devkit';
 import { PackageGeneratorOptions } from '../schema';
 
-export function validateOptions(options: PackageGeneratorOptions): void {
+export function validateOptions(options: PackageGeneratorOptions, logger: Logger): void {
   options.cwd = options.cwd ?? process.cwd();
 
-  const turboJson = loadTurboJson(options.cwd);
+  const turboJson = loadTurboJson(options.cwd, logger);
 
   if (!turboJson) {
-    // logger.error(LOG_PREFIX, `Current working directory is not a Turborepo`);
+    logger.error('Current working directory is not a Turborepo');
     process.exit(1);
   }
 
-  console.log(resolveWorkspace('asdasd', options.cwd));
+  // console.log(resolveWorkspace('asdasd', options.cwd));
 }

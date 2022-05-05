@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 
-import { resolveSpaceType } from '@alloyify/devkit';
+import { loadCwdConfigs } from '@alloyify/devkit';
 import { Command } from 'commander';
 import { GenerateTurborepoCommand } from '../commands';
 import { loadAnvilPackageJson, logger } from '../utils';
 
-const spaceType = resolveSpaceType();
+const cwdConfigs = loadCwdConfigs(process.cwd(), logger);
 const packageJson = loadAnvilPackageJson();
 const { version } = packageJson;
 
@@ -13,7 +13,7 @@ logger.info(`cli v${version}`);
 
 const program = new Command();
 
-switch (spaceType) {
+switch (cwdConfigs.cwdType) {
   case 'empty':
     break;
 
@@ -21,7 +21,7 @@ switch (spaceType) {
     break;
 
   case 'turborepo':
-    GenerateTurborepoCommand.load(program);
+    GenerateTurborepoCommand.load(program, cwdConfigs);
     break;
 
   case 'not-monorepo':

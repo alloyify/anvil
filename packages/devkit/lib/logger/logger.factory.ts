@@ -4,16 +4,24 @@ import { GeneratorsRunnerType } from '../constants';
 let logger: Logger;
 let loggerPretty: Logger;
 
-export function getLogger(type: GeneratorsRunnerType, options: LoggerOptions = {}): Logger {
+export function getLogger(type?: GeneratorsRunnerType, options: LoggerOptions = {}): Logger {
+  const level = process.env.LOG_LEVEL;
+  const defaultOptions: LoggerOptions = {
+    name: type,
+  };
+
+  if (level) {
+    defaultOptions.level = level;
+  }
+
   switch (type) {
     case GeneratorsRunnerType.ANVIL:
       if (!loggerPretty) {
         loggerPretty = pino({
-          name: type,
+          ...defaultOptions,
           transport: {
-            target: './logger.options',
+            target: './logger-pretty.options',
           },
-
           ...options,
         });
       }
@@ -23,7 +31,7 @@ export function getLogger(type: GeneratorsRunnerType, options: LoggerOptions = {
     default:
       if (!logger) {
         logger = pino({
-          name: type,
+          ...defaultOptions,
           ...options,
         });
       }

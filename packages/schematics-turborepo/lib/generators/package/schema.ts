@@ -1,12 +1,9 @@
-import { TransformedNames, GeneratorsRunnerType } from '@alloyify/devkit';
+import { GeneratorBaseOptions, TransformedNames } from '@alloyify/devkit';
 
-export interface PackageGeneratorOptions {
+export interface PackageGeneratorOptions extends GeneratorBaseOptions {
   name: string;
   workspace?: string;
   scope?: string;
-  cwd?: string;
-  dryRun?: boolean;
-  type?: GeneratorsRunnerType;
   nameT?: TransformedNames;
   workspaceT?: TransformedNames;
   scopeT?: TransformedNames;

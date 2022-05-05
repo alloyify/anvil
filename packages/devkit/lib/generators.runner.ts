@@ -12,8 +12,8 @@ export class GeneratorsRunner {
   constructor(options: GeneratorsRunnerOptions) {
     this.options = {
       cwd: options.cwd,
-      type: GeneratorsRunnerType.ALLOYIFY,
       dryRun: false,
+      runnerType: GeneratorsRunnerType.ALLOYIFY,
       printChanges: true,
       ...options,
     };
@@ -28,7 +28,7 @@ export class GeneratorsRunner {
     const task: any = await generator(host, {
       ...generatorOptions,
       dryRun: (generatorOptions as any).dryRun ?? this.options.dryRun,
-      type: (generatorOptions as any).type ?? this.options.type,
+      runnerType: (generatorOptions as any).runnerType ?? this.options.runnerType,
     });
     const changes = host.listChanges();
 
