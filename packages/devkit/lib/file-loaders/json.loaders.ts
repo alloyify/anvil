@@ -13,14 +13,14 @@ import { Logger } from '../logger';
 export function loadJsonFile(cwd: string, fileName: string, logger: Logger): Record<string, any> {
   const filePath = join(cwd, fileName);
 
-  logger.debug(`Loading json file ${filePath}`);
+  logger.debug(`loading json file ${filePath}`);
 
   const json = safeRequire(filePath);
 
   if (!json) {
-    logger.debug(`File not found or invalid ${filePath}`);
+    logger.debug(`file not found or invalid ${filePath}`);
   } else {
-    logger.debug(`File loaded ${filePath}`);
+    logger.debug(`file loaded ${filePath}`);
   }
 
   return json;

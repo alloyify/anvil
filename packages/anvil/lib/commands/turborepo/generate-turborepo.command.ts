@@ -47,7 +47,7 @@ export class GenerateTurborepoCommand {
 
   private static validateSchematic(schematic: TurborepoSchematics): void {
     if (!TurborepoSchematics[schematic]) {
-      logger.error(`Invalid schematic name, expected one of: ${TURBOREPO_SCHEMATICS_LIST}`);
+      logger.error(`invalid schematic name, expected one of: ${TURBOREPO_SCHEMATICS_LIST}`);
       process.exit(1);
     }
   }

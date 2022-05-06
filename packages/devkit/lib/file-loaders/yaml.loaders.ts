@@ -16,12 +16,12 @@ export function loadYamlFile(cwd: string, fileName: string, logger: Logger): Rec
   let content: string;
   let parsed: string;
 
-  logger.debug(`Loading yaml file ${filePath}`);
+  logger.debug(`loading yaml file ${filePath}`);
 
   try {
     content = readFileSync(filePath, { encoding: 'utf8' });
   } catch (e) {
-    logger.debug(`Error loading yaml file ${filePath}`);
+    logger.debug(`error loading yaml file ${filePath}`);
     logger.debug(e);
 
     return undefined;
@@ -30,13 +30,13 @@ export function loadYamlFile(cwd: string, fileName: string, logger: Logger): Rec
   try {
     parsed = yaml.parse(content);
   } catch (e) {
-    logger.debug(`Error parsing yaml file ${filePath}`);
+    logger.debug(`error parsing yaml file ${filePath}`);
     logger.debug(e);
 
     return undefined;
   }
 
-  logger.debug(`File loaded ${filePath}`);
+  logger.debug(`file loaded ${filePath}`);
 
   return parsed as any;
 }

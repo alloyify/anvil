@@ -5,8 +5,12 @@ import { Command } from 'commander';
 import { GenerateTurborepoCommand } from '../commands';
 import { loadAnvilPackageJson, logger } from '../utils';
 
-const cwdConfigs = loadCwdConfigs(process.cwd(), logger);
-const packageJson = loadAnvilPackageJson();
+const cwd = process.cwd();
+
+logger.debug(`CWD ${cwd}`);
+
+const cwdConfigs = loadCwdConfigs(cwd, logger);
+const packageJson = loadAnvilPackageJson(logger);
 const { version } = packageJson;
 
 logger.info(`cli v${version}`);

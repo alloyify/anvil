@@ -1,14 +1,17 @@
-import { convertNxGenerator, getLogger, join, Tree } from '@alloyify/devkit';
-import { createFiles, transformOptions, validateOptions } from './helpers';
+import { convertNxGenerator, getLogger, join, resolveWorkspace, Tree } from '@alloyify/devkit';
+import { transformNames, validateCwdConfigs } from './helpers';
 import { PackageGeneratorOptions } from './schema';
 
 export async function packageGenerator(tree: Tree, options: PackageGeneratorOptions): Promise<any> {
   const logger = getLogger(options.runnerType);
-  logger.info('running schematic');
-  // logger.info(options.cwdConfigs.pnpmWorkspaceYaml);
 
-  // validateOptions(options, logger);
-  // transformOptions(options);
+  logger.debug('run packageGenerator with options');
+  logger.debug(options);
+
+  validateCwdConfigs(options, logger);
+  transformNames(options, logger);
+  const workspace = resolveWorkspace(options.cwdConfigs, options.workspaceT.fileName, logger);
+
   // createFiles(tree, join('packages', options.nameT.fileName), options);
 
   return tree;

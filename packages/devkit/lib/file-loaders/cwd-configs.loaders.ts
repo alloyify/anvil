@@ -1,12 +1,12 @@
 import { loadNxJson, loadNxWorkspaceJson, loadPackageJson, loadTurboJson } from './json.loaders';
 import { loadPnpmYaml } from './yaml.loaders';
-import { CwdConfigs } from '../interfaces';
+import { CwdConfigs, GeneratorBaseOptions } from '../interfaces';
 import { Logger } from '../logger';
 
 export function loadCwdConfigs(cwd: string, logger: Logger): CwdConfigs {
   const configs: CwdConfigs = {} as any;
 
-  logger.debug(`Loading CWD configs ${cwd}`);
+  logger.debug(`loading CWD configs ${cwd}`);
 
   configs.packageJson = loadPackageJson(cwd, logger);
   configs.pnpmWorkspaceYaml = loadPnpmYaml(cwd, logger);
@@ -45,4 +45,8 @@ export function loadCwdConfigs(cwd: string, logger: Logger): CwdConfigs {
   logger.debug(`CWD type ${configs.cwdType}`);
 
   return configs;
+}
+
+export function getCwdConfigs(options: GeneratorBaseOptions, logger: Logger): CwdConfigs {
+  return options.cwdConfigs ?? loadCwdConfigs(options.cwd, logger);
 }
