@@ -1,18 +1,19 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-
-const tsconfig = require('tsconfig-extends');
-const { pathsToModuleNameMapper } = require('ts-jest/utils');
-const compilerOptions = tsconfig.load_file_sync('./tsconfig.jest.json', __dirname);
-
 module.exports = {
+  resetMocks: true,
+  coveragePathIgnorePatterns: [],
+  collectCoverageFrom: [
+    '<rootDir>/lib/**/*.ts',
+    '<rootDir>/bin/**/*.ts',
+    '!<rootDir>/**/*.d.ts',
+    '!<rootDir>/**/index.ts',
+    '!<rootDir>/**/*.interface.ts',
+    '!**/node_modules/**',
+    '!**/__stubs__/**',
+    '!**/__fixture__/**',
+  ],
+  coverageThreshold: null,
   testEnvironment: 'node',
-  setupFilesAfterEnv: ['jest-extended'],
-  moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, {
-    prefix: '<rootDir>/packages/',
-  }),
-  moduleFileExtensions: ['ts', 'js'],
   testRegex: '\\.spec.ts$',
-  rootDir: '.',
   transform: {
     '^.+\\.ts$': 'ts-jest',
   },
@@ -21,16 +22,6 @@ module.exports = {
       tsconfig: 'tsconfig.jest.json',
     },
   },
-  coverageReporters: ['json', 'lcov', 'text-summary'],
-  coverageDirectory: 'coverage',
-  collectCoverageFrom: [
-    'packages/**/*.ts',
-    '!packages/**/*.d.ts',
-    '!packages/**/index.ts',
-    '!packages/**/*.interface.ts',
-    '!**/node_modules/**',
-    '!**/__stubs__/**',
-    '!**/__fixture__/**',
-    '!integration/*',
-  ],
+  moduleDirectories: ['node_modules'],
+  moduleFileExtensions: ['js', 'ts'],
 };
