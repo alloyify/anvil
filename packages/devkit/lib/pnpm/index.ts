@@ -1,1 +1,1 @@
-export * from './resolve-workspace.util';
+export * from './pnpm-workspace.util';
