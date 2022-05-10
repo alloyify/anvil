@@ -1,3 +1,4 @@
+import { loadAnvilConfig } from './anvil-config.loader';
 import { loadNxJson, loadNxWorkspaceJson, loadPackageJson, loadTurboJson } from './json.loaders';
 import { loadPnpmYaml } from './yaml.loaders';
 import { CwdConfigs, GeneratorBaseOptions } from '../interfaces';
@@ -10,6 +11,7 @@ export function loadCwdConfigs(cwd: string, logger: Logger): CwdConfigs {
 
   configs.packageJson = loadPackageJson(cwd, logger);
   configs.pnpmWorkspaceYaml = loadPnpmYaml(cwd, logger);
+  configs.anvilConfig = loadAnvilConfig(cwd, logger);
 
   if (!configs.packageJson) {
     configs.cwdType = 'empty';

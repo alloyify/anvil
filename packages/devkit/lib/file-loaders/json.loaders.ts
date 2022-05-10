@@ -11,7 +11,7 @@ import { Logger } from '../logger';
  * @returns object
  */
 export function loadJsonFile(cwd: string, fileName: string, logger: Logger): Record<string, any> {
-  const filePath = join(cwd, fileName);
+  const filePath = join(cwd, `${fileName}.json`);
 
   logger.debug(`loading json file ${filePath}`);
 

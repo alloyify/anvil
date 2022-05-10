@@ -4,26 +4,47 @@ import * as yaml from 'yaml';
 import { PNPM_WORKSPACE_YAML } from '../constants';
 import { Logger } from '../logger';
 
-/**
- * Load YAML file
- * @param cwd string
- * @param fileName string
- * @param logger Logger
- * @returns object
- */
-export function loadYamlFile(cwd: string, fileName: string, logger: Logger): Record<string, any> {
-  const filePath = join(cwd, fileName);
+export function readYamlFile(
+  cwd: string,
+  fileName: string,
+  logger: Logger,
+): {
+  content: string;
+  filePath: string;
+} {
+  const exts = ['yaml', 'yml'];
   let content: string;
+  let filePath: string;
+
+  for (let i = 0; i < exts.length; i++) {
+    const ext = exts[i];
+    filePath = join(cwd, `${fileName}.${ext}`);
+
+    logger.debug(`loading yaml file ${filePath}`);
+
+    try {
+      content = readFileSync(filePath, { encoding: 'utf8' });
+
+      if (content) {
+        break;
+      }
+    } catch (e) {
+      logger.debug(`error loading yaml file ${filePath}`);
+      logger.debug(e);
+    }
+  }
+
+  return {
+    content,
+    filePath,
+  };
+}
+
+export function loadYamlFile(cwd: string, fileName: string, logger: Logger): Record<string, any> {
+  const { content, filePath } = readYamlFile(cwd, fileName, logger);
   let parsed: string;
 
-  logger.debug(`loading yaml file ${filePath}`);
-
-  try {
-    content = readFileSync(filePath, { encoding: 'utf8' });
-  } catch (e) {
-    logger.debug(`error loading yaml file ${filePath}`);
-    logger.debug(e);
-
+  if (!content) {
     return undefined;
   }
 
