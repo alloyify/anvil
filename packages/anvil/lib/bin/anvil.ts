@@ -2,7 +2,7 @@
 
 import { loadCwdConfigs } from '@alloyify/devkit';
 import { Command } from 'commander';
-import { GenerateTurborepoCommand } from '../commands';
+import { GenerateTurborepoPackageCommand } from '../commands';
 import { loadAnvilPackageJson, logger } from '../utils';
 
 const cwd = process.cwd();
@@ -22,7 +22,7 @@ switch (cwdConfigs.cwdType) {
     break;
 
   case 'turborepo':
-    GenerateTurborepoCommand.load(program, cwdConfigs);
+    GenerateTurborepoPackageCommand.load(program, cwdConfigs);
     break;
 
   case 'not-monorepo':

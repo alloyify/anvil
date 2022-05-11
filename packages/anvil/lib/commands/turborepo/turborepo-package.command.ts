@@ -16,7 +16,7 @@ import { TURBO_PACKAGE_COMMAND } from '../../constants';
 import { getCommandCommonOptions, logger } from '../../utils';
 import { GenerateTurborepoPackageOptions } from './interfaces';
 
-export class GenerateTurborepoCommand {
+export class GenerateTurborepoPackageCommand {
   static load(program: Command, cwdConfigs: CwdConfigs): void {
     logger.debug('GenerateTurborepoCommand.load');
 

@@ -1,1 +1,1 @@
-export * from './generate-turborepo.command';
+export * from './turborepo-package.command';
