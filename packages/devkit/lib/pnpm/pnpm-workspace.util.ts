@@ -1,12 +1,11 @@
 import { isArray } from 'lodash';
-import { PNPM_DEFAULT_WORKSPACE, PNPM_PACKAGES_FIELD, PNPM_WORKSPACE_YAML } from '../constants';
+import { PNPM_WORKSPACE_DEFAULT, PNPM_PACKAGES_FIELD, PNPM_WORKSPACE_YAML } from '../constants';
 import { CwdConfigs } from '../interfaces';
 import { Logger } from '../logger';
 
-export function getWorkspacesList(cwdConfigs: CwdConfigs, logger: Logger): string[] {
+export function getWorkspacesList(pnpmWorkspaceYaml: CwdConfigs['pnpmWorkspaceYaml'], logger: Logger): string[] {
   logger.debug('getWorkspacesList');
 
-  const { pnpmWorkspaceYaml } = cwdConfigs;
   const pnpmWorkspaces = pnpmWorkspaceYaml?.[PNPM_PACKAGES_FIELD];
 
   if (!isArray(pnpmWorkspaces)) {
@@ -26,26 +25,28 @@ export function getWorkspacesList(cwdConfigs: CwdConfigs, logger: Logger): strin
   return workspacesList;
 }
 
-export function resolveWorkspace(cwdConfigs: CwdConfigs, workspace: string, logger: Logger): string {
+export function resolveWorkspace(
+  workspacesList: CwdConfigs['workspacesList'],
+  workspace: string,
+  logger: Logger,
+): string {
   logger.debug('resolveWorkspace');
 
-  const workspacesList = getWorkspacesList(cwdConfigs, logger);
   const firstWorkspace = workspacesList[0];
-  const defaultWorkspace = firstWorkspace ?? PNPM_DEFAULT_WORKSPACE;
+  const defaultWorkspace = firstWorkspace ?? PNPM_WORKSPACE_DEFAULT;
 
   if (!workspace) {
-    logger.info(`workspace wasn't provided. Using default "${defaultWorkspace}"`);
+    logger.debug(`workspace wasn't provided. Using default "${defaultWorkspace}"`);
     return defaultWorkspace;
   }
 
   const resolvedWorkspace = workspacesList.find((one: string) => one === workspace);
 
   if (!resolvedWorkspace) {
-    logger.warn(`workspace "${workspace}" wasn't found. Using default "${defaultWorkspace}"`);
+    logger.debug(`workspace "${workspace}" wasn't found. Using default "${defaultWorkspace}"`);
     return defaultWorkspace;
   }
 
-  logger.info(`using workspace "${resolvedWorkspace}"`);
-
+  logger.debug(`using workspace "${resolvedWorkspace}"`);
   return resolvedWorkspace;
 }

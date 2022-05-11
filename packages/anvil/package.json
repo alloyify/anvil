@@ -32,7 +32,7 @@
     "@alloyify/schematics-turborepo": "workspace:0.0.0",
     "commander": "9.2.0",
     "inquirer": "8.2.4",
-    "lodash": "4.17.21"
-  },
-  "devDependencies": {}
+    "lodash": "4.17.21",
+    "ts-deepmerge": "2.0.1"
+  }
 }

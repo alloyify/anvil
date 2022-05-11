@@ -1,6 +1,6 @@
 import Ajv from 'ajv';
 import deepMerge from 'ts-deepmerge';
-import { ANVIL_CONFIG } from '../constants';
+import { ANVIL_CONFIG, PACKAGE_ACCESS_DEFAULT } from '../constants';
 import { AnvilConfig } from '../interfaces';
 import { Logger } from '../logger';
 import { loadJsonFile } from './json.loaders';
@@ -10,7 +10,7 @@ const defaultConfig: AnvilConfig = {
   generators: {
     package: {
       scope: '',
-      access: 'restricted',
+      access: PACKAGE_ACCESS_DEFAULT,
       license: 'LICENSE',
       author: {
         name: '',

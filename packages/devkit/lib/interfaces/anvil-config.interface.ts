@@ -1,3 +1,5 @@
+import { PackageAccess } from '../constants';
+
 export interface AnvilConfig {
   generators?: AnvilConfigGenerators;
 }
@@ -8,7 +10,7 @@ export interface AnvilConfigGenerators {
 
 export interface AnvilConfigGeneratorsPackage {
   scope?: string;
-  access?: 'public' | 'restricted';
+  access?: PackageAccess;
   license?: string;
   author?: {
     name?: string;

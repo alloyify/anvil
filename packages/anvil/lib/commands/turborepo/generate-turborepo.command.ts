@@ -1,28 +1,39 @@
-import { CwdConfigs, GeneratorsRunner, GeneratorsRunnerType } from '@alloyify/devkit';
+import {
+  CwdConfigs,
+  GeneratorsRunner,
+  GeneratorsRunnerType,
+  PACKAGE_ACCESS_CHOICES,
+  PACKAGE_ACCESS_DEFAULT,
+  resolvePackageAccess,
+  resolveWorkspace,
+} from '@alloyify/devkit';
 import { packageGenerator, PackageGeneratorOptions } from '@alloyify/schematics-turborepo';
 import { Command } from 'commander';
+import deepMerge from 'ts-deepmerge';
 import * as inquirer from 'inquirer';
 import { isEmpty, isNil } from 'lodash';
-import { GENERATE_COMMAND, TurborepoSchematics, TURBOREPO_SCHEMATICS_LIST } from '../../constants';
-import { logger } from '../../utils';
+import { TURBO_PACKAGE_COMMAND } from '../../constants';
+import { getCommandCommonOptions, logger } from '../../utils';
 import { GenerateTurborepoPackageOptions } from './interfaces';
 
 export class GenerateTurborepoCommand {
   static load(program: Command, cwdConfigs: CwdConfigs): void {
-    program
-      .command(GENERATE_COMMAND)
-      .alias('g')
-      .argument('<schematic>', `Schematic name. One of: ${TURBOREPO_SCHEMATICS_LIST}.`)
-      .argument('[name]', 'Package name.')
-      .option('-w, --workspace <workspace>', 'Workspace, e.g. "packages".', '')
-      .option('-s, --scope <scope>', 'Package scope', '')
-      .option('--cwd <cwd>', 'Working directory.')
-      .option('--dry-run', 'Dry run.')
-      .action(async (schematic: TurborepoSchematics, name?: string, options?: GenerateTurborepoPackageOptions) => {
-        this.validateSchematic(schematic);
+    logger.debug('GenerateTurborepoCommand.load');
 
-        name = await this.promptName(name);
-        options.cwd = options.cwd ?? process.cwd();
+    const command = program
+      .command(TURBO_PACKAGE_COMMAND.name)
+      .alias(TURBO_PACKAGE_COMMAND.alias)
+      .argument('[packageName]', 'Package name')
+      .option('-w, --workspace <workspace>', `Workspace. One of: ${cwdConfigs.workspacesList}`)
+      .option('-s, --scope <scope>', 'Package scope')
+      .option('-a, --access <access>', `Package access. One of: ${PACKAGE_ACCESS_CHOICES}`)
+      .option('-l, --license <license>', 'Package license')
+      .option('-an, --authorName <authorName>', 'Package author`s name')
+      .option('-ae, --authorEmail <authorEmail>', 'Package author`s email')
+      .action(async (packageName: string, options: GenerateTurborepoPackageOptions) => {
+        logger.debug('GenerateTurborepoCommand run');
+
+        const promptOptions = await this.promptOptions(packageName, options, cwdConfigs);
 
         const runner = new GeneratorsRunner({
           cwd: options.cwd,
@@ -30,40 +41,114 @@ export class GenerateTurborepoCommand {
           runnerType: GeneratorsRunnerType.ANVIL,
         });
 
-        switch (schematic) {
-          case TurborepoSchematics.package:
-            await runner.execute<PackageGeneratorOptions>(packageGenerator, {
-              name,
-              cwdConfigs,
-              ...options,
-            });
-            break;
-
-          default:
-            break;
-        }
+        await runner.execute<PackageGeneratorOptions>(packageGenerator, {
+          cwdConfigs,
+          ...promptOptions,
+        });
       });
+
+    getCommandCommonOptions(command);
   }
 
-  private static validateSchematic(schematic: TurborepoSchematics): void {
-    if (!TurborepoSchematics[schematic]) {
-      logger.error(`invalid schematic name, expected one of: ${TURBOREPO_SCHEMATICS_LIST}`);
-      process.exit(1);
+  private static async promptOptions(
+    packageName: string,
+    options: GenerateTurborepoPackageOptions,
+    cwdConfigs: CwdConfigs,
+  ): Promise<PackageGeneratorOptions & { packageName: string }> {
+    logger.debug('promptOptions');
+
+    const fromAnvilConfig = cwdConfigs.anvilConfig.generators.package;
+    const defaultOptions: Partial<PackageGeneratorOptions> = {
+      packageName: packageName ?? '',
+      workspace: resolveWorkspace(cwdConfigs.workspacesList, options.workspace, logger),
+      scope: fromAnvilConfig.scope,
+      access: resolvePackageAccess(fromAnvilConfig, options.access, logger),
+      license: fromAnvilConfig.license,
+      authorName: fromAnvilConfig.author.name,
+      authorEmail: fromAnvilConfig.author.email,
+    };
+    const questions: inquirer.Question[] = [];
+    let answers: any = {};
+
+    if (!packageName) {
+      questions.push({
+        type: 'input',
+        name: 'packageName',
+        message: 'Please type a package name',
+        validate: (val) => !isEmpty(val) && !isNil(val),
+      });
     }
-  }
 
-  private static async promptName(name: string): Promise<string> {
-    if (name) {
-      return name;
+    if (!options.yes && cwdConfigs.workspacesList.length > 1 && options.workspace !== defaultOptions.workspace) {
+      questions.push({
+        type: 'list',
+        name: 'workspace',
+        message: 'Please select the workspace',
+        choices: cwdConfigs.workspacesList.map((w, i) => ({
+          name: w,
+          checked: i === 0,
+        })),
+      } as inquirer.ListQuestion);
     }
 
-    const prompt = inquirer.createPromptModule();
+    if (!options.yes && isNil(options.scope)) {
+      questions.push({
+        type: 'input',
+        name: 'scope',
+        message: 'Please type a package scope, if needed',
+        default: defaultOptions.scope,
+      });
+    }
 
-    return prompt({
-      type: 'input',
-      name: 'name',
-      message: 'Please type a package name',
-      validate: (val) => !isEmpty(val) && !isNil(val),
-    }).then((answers) => answers.name);
+    if (!options.yes && options.access !== defaultOptions.access) {
+      questions.push({
+        type: 'list',
+        name: 'access',
+        message: 'Please select a package access',
+        choices: PACKAGE_ACCESS_CHOICES.map((a) => ({
+          name: a,
+          checked: a === PACKAGE_ACCESS_DEFAULT,
+        })),
+      } as inquirer.ListQuestion);
+    }
+
+    if (!options.yes && isNil(options.license)) {
+      questions.push({
+        type: 'input',
+        name: 'license',
+        message: 'Please type a package license, if needed',
+        default: defaultOptions.license,
+      });
+    }
+
+    if (!options.yes && isNil(options.authorName)) {
+      questions.push({
+        type: 'input',
+        name: 'authorName',
+        message: 'Please type a package author`s name',
+        default: defaultOptions.authorName,
+      });
+    }
+
+    if (!options.yes && isNil(options.authorEmail)) {
+      questions.push({
+        type: 'input',
+        name: 'authorEmail',
+        message: 'Please type a package author`s email',
+        default: defaultOptions.authorEmail,
+      });
+    }
+
+    if (questions.length) {
+      const prompt = inquirer.createPromptModule();
+      answers = (await prompt(questions)
+        .then((a) => a)
+        .catch((e) => {
+          logger.error('error while prompting options:');
+          logger.error(e);
+        })) as any;
+    }
+
+    return deepMerge(defaultOptions, options, answers);
   }
 }

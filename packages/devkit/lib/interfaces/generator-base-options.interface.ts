@@ -1,9 +1,13 @@
 import { CwdConfigs } from './cwd-configs.interface';
 import { GeneratorsRunnerType } from '../constants';
 
-export interface GeneratorBaseOptions {
+export interface GeneratorCommonOptions {
   cwd?: string;
-  cwdConfigs?: CwdConfigs;
   dryRun?: boolean;
+  yes?: boolean;
+}
+
+export interface GeneratorBaseOptions extends GeneratorCommonOptions {
+  cwdConfigs?: CwdConfigs;
   runnerType?: GeneratorsRunnerType;
 }

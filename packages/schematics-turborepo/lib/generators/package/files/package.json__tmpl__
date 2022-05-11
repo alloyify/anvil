@@ -1,12 +1,12 @@
 {
-  "name": "<%= packageNpmName %>",
+  "name": "<%= packageNameFull %>",
   "description": "",
   "version": "0.0.0",
-  "license": "LICENCE",
+  "license": "<%= license %>",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "publishConfig": {
-    "access": "restricted"
+    "access": "<%= access %>"
   },
   "files": [
     "dist",
@@ -14,8 +14,8 @@
     "README.md"
   ],
   "author": {
-    "name": "",
-    "email": ""
+    "name": "<%= authorName %>",
+    "email": "<%= authorEmail %>"
   },
   "scripts": {
     "build": "tsc",

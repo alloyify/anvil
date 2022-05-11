@@ -1,11 +1,18 @@
-import { GeneratorBaseOptions, TransformedNames } from '@alloyify/devkit';
+import { AnvilConfigGeneratorsPackage, GeneratorBaseOptions, TransformedNames } from '@alloyify/devkit';
 
 export interface PackageGeneratorOptions extends GeneratorBaseOptions {
-  name: string;
+  // these come from options
+  packageName: string;
   workspace?: string;
   scope?: string;
-  packageNpmName?: string;
-  nameT?: TransformedNames;
-  workspaceT?: TransformedNames;
-  scopeT?: TransformedNames;
+  access?: AnvilConfigGeneratorsPackage['access'];
+  license?: string;
+  authorName?: string;
+  authorEmail?: string;
+}
+
+export interface PackageGeneratorOptionsTransformed {
+  packageNameT: TransformedNames;
+  packageNameFull: string;
+  scopeT: TransformedNames;
 }

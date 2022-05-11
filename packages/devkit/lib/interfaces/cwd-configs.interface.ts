@@ -10,4 +10,5 @@ export interface CwdConfigs {
   nxWorkspaceJson?: Record<string, any>;
   turboJson?: Record<string, any>;
   pnpmWorkspaceYaml?: { packages: string[] };
+  workspacesList?: string[];
 }

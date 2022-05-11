@@ -1,5 +1,5 @@
-import { convertNxGenerator, getLogger, join, resolveWorkspace, Tree } from '@alloyify/devkit';
-import { createFiles, transformNames, validateCwdConfigs } from './helpers';
+import { convertNxGenerator, getLogger, join, Tree } from '@alloyify/devkit';
+import { createFiles, transformOptions, validateOptions } from './helpers';
 import { PackageGeneratorOptions } from './schema';
 
 export async function packageGenerator(tree: Tree, options: PackageGeneratorOptions): Promise<any> {
@@ -8,12 +8,18 @@ export async function packageGenerator(tree: Tree, options: PackageGeneratorOpti
   logger.debug('run packageGenerator with options:');
   logger.debug(options);
 
-  validateCwdConfigs(options, logger);
-  transformNames(options, logger);
+  const validatedOptions = validateOptions(options, logger);
+  const transformedOptions = transformOptions(validatedOptions, logger);
 
-  const workspace = resolveWorkspace(options.cwdConfigs, options.workspaceT.fileName, logger);
-
-  createFiles(tree, join(workspace, options.nameT.fileName), options, logger);
+  createFiles(
+    tree,
+    join(validatedOptions.workspace, transformedOptions.packageNameT.fileName),
+    {
+      ...validatedOptions,
+      ...transformedOptions,
+    },
+    logger,
+  );
 
   return tree;
 }

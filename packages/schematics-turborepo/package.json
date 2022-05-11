@@ -27,7 +27,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@alloyify/devkit": "workspace:0.0.0"
-  },
-  "devDependencies": {}
+    "@alloyify/devkit": "workspace:0.0.0",
+    "lodash": "4.17.21"
+  }
 }

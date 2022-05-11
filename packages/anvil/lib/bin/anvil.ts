@@ -12,9 +12,6 @@ logger.debug(`CWD ${cwd}`);
 const cwdConfigs = loadCwdConfigs(cwd, logger);
 const packageJson = loadAnvilPackageJson(logger);
 const { version } = packageJson;
-
-logger.info(`cli v${version}`);
-
 const program = new Command();
 
 switch (cwdConfigs.cwdType) {

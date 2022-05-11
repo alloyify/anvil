@@ -1,6 +1,10 @@
-export interface GenerateTurborepoPackageOptions {
+import { AnvilConfigGeneratorsPackage, GeneratorCommonOptions } from '@alloyify/devkit';
+
+export interface GenerateTurborepoPackageOptions extends GeneratorCommonOptions {
   workspace?: string;
   scope?: string;
-  cwd?: string;
-  dryRun?: boolean;
+  access?: AnvilConfigGeneratorsPackage['access'];
+  license?: string;
+  authorName?: string;
+  authorEmail?: string;
 }

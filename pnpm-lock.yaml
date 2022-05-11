@@ -72,12 +72,14 @@ importers:
       commander: 9.2.0
       inquirer: 8.2.4
       lodash: 4.17.21
+      ts-deepmerge: 2.0.1
     dependencies:
       '@alloyify/devkit': link:../devkit
       '@alloyify/schematics-turborepo': link:../schematics-turborepo
       commander: 9.2.0
       inquirer: 8.2.4
       lodash: 4.17.21
+      ts-deepmerge: 2.0.1
 
   packages/devkit:
     specifiers:
@@ -117,8 +119,10 @@ importers:
   packages/schematics-turborepo:
     specifiers:
       '@alloyify/devkit': workspace:0.0.0
+      lodash: 4.17.21
     dependencies:
       '@alloyify/devkit': link:../devkit
+      lodash: 4.17.21
 
 packages:
 

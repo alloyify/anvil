@@ -63,5 +63,12 @@ export function loadYamlFile(cwd: string, fileName: string, logger: Logger): Rec
 }
 
 export function loadPnpmYaml(cwd: string, logger: Logger): { packages: string[] } & Record<string, any> {
-  return loadYamlFile(cwd, PNPM_WORKSPACE_YAML, logger) as any;
+  const pnpmWorkspaceYamlFile = loadYamlFile(cwd, PNPM_WORKSPACE_YAML, logger) as any;
+
+  if (!pnpmWorkspaceYamlFile) {
+    logger.error(`${PNPM_WORKSPACE_YAML} is invalid or missing`);
+    process.exit(1);
+  }
+
+  return pnpmWorkspaceYamlFile;
 }

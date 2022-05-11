@@ -5,16 +5,16 @@
   "cli": "nx",
   "type": "object",
   "properties": {
-    "name": {
+    "packageName": {
       "description": "The name of the package.",
       "type": "string",
       "$default": {
         "$source": "argv",
         "index": 0
       },
-      "x-prompt": "What name would you like to use for the new package?"
+      "x-prompt": "Please type a package name"
     }
   },
   "additionalProperties": false,
-  "required": ["name"]
+  "required": ["packageName"]
 }
