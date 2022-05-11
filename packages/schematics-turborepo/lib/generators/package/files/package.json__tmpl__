@@ -1,7 +1,26 @@
 {
-  <% if (scopeT.fileName) { %>
-  "name": "@<%= scopeT.fileName %>/<%= nameT.fileName %>"
-  <% } else { %>
-  "name": "<%= nameT.fileName %>"
-  <% } %>
+  "name": "<%= packageNpmName %>",
+  "description": "",
+  "version": "0.0.0",
+  "license": "LICENCE",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "publishConfig": {
+    "access": "restricted"
+  },
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md"
+  ],
+  "author": {
+    "name": "",
+    "email": ""
+  },
+  "scripts": {
+    "build": "tsc",
+    "lint": "eslint . --fix",
+    "test": "jest"
+  },
+  "dependencies": {}
 }

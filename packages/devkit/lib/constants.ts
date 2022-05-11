@@ -1,3 +1,5 @@
+import { AnvilConfigGeneratorsPackage } from './interfaces/anvil-config.interface';
+
 export const ANVIL_CONFIG = 'anvil';
 export const NX_JSON = 'nx';
 export const TURBO_JSON = 'turbo';

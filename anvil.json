@@ -1,1 +1,13 @@
-{}
+{
+  "generators": {
+    "package": {
+      "scope": "alloyify",
+      "access": "restricted",
+      "license": "LICENCE",
+      "author": {
+        "name": "Mykhaylo Yali",
+        "email": "mihon4ik@gmail.com"
+      }
+    }
+  }
+}
