@@ -1,0 +1,46 @@
+"use strict";
+var __assign = (this && this.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var fs = require("fs");
+var path = require("path");
+function load_file_sync(filename, cwd) {
+    if (cwd === void 0) { cwd = process.cwd(); }
+    var _filename = path.resolve(cwd, filename);
+    var json = _load_json_sync(_filename);
+    return load_config_sync(json, path.dirname(_filename));
+}
+exports.load_file_sync = load_file_sync;
+function load_config_sync(tsconfig, cwd) {
+    if (cwd === void 0) { cwd = process.cwd(); }
+    return _load_config_sync(tsconfig, cwd);
+}
+exports.load_config_sync = load_config_sync;
+function _load_json_sync(filename) {
+    var content = fs.readFileSync(filename, 'utf8');
+    return /^\s*$/.test(content)
+        ? {}
+        : JSON.parse(content);
+}
+function _load_config_sync(tsconfig, cwd, stack) {
+    if (stack === void 0) { stack = []; }
+    var _a = tsconfig.compilerOptions, compiler_options = _a === void 0 ? {} : _a;
+    if (tsconfig.extends === undefined) {
+        return compiler_options;
+    }
+    var parent_filename = path.resolve(cwd, tsconfig.extends);
+    if (stack.indexOf(parent_filename) !== -1) {
+        throw new Error("Circular dependency detected: " + stack.join(' -> '));
+    }
+    var _b = _load_json_sync(parent_filename), parent_extends = _b.extends, parent_compiler_options = _b.compilerOptions;
+    return _load_config_sync({
+        extends: parent_extends,
+        compilerOptions: __assign({}, parent_compiler_options, compiler_options),
+    }, path.dirname(parent_filename), stack.concat([parent_filename]));
+}

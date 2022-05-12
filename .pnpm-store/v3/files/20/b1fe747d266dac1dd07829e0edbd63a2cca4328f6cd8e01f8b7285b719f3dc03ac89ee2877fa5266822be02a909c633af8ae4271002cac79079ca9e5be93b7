@@ -1,0 +1,27 @@
+{
+  "author": "Talles L <talleslasmar@gmail.com>",
+  "bugs": {
+    "url": "https://github.com/tallesl/node-safe-require/issues"
+  },
+  "description": "Safe version of require that returns undefined rather than throwing an error when the module is not found.",
+  "devDependencies": {
+    "coveralls": "^2.11.9",
+    "istanbul": "^0.4.4",
+    "mocha": "^2.5.3",
+    "standard": "^7.1.2"
+  },
+  "keywords": [
+    "safe",
+    "require"
+  ],
+  "license": "Fair",
+  "name": "safe-require",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tallesl/node-safe-require.git"
+  },
+  "scripts": {
+    "test": "standard && mocha"
+  },
+  "version": "1.0.4"
+}

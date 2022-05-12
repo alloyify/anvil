@@ -1,0 +1,9 @@
+export interface TSConfig {
+    extends?: string;
+    compilerOptions?: CompilerOptions;
+}
+export interface CompilerOptions {
+    [key: string]: any;
+}
+export declare function load_file_sync(filename: string, cwd?: string): CompilerOptions;
+export declare function load_config_sync(tsconfig: TSConfig, cwd?: string): CompilerOptions;
