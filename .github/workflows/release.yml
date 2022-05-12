@@ -32,7 +32,7 @@ jobs:
         run: pnpm boot
 
       - name: Create and publish versions
-        uses: changesets/action@master
+        uses: changesets/action@v1
         with:
           version: pnpm ci:version
           commit: 'chore: update versions'
