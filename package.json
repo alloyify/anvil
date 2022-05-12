@@ -6,9 +6,12 @@
     "packages/*"
   ],
   "scripts": {
-    "boot": "pnpm clean:node_modules && pnpm install && pnpm build",
+    "boot": "pnpm clean:node_modules && pnpm install",
     "build": "turbo run build",
     "build:force": "pnpm clean:artefacts && pnpm build --force",
+    "changeset": "changeset",
+    "ci:version": "pnpx changeset version && pnpm install --no-frozen-lockfile && git add .",
+    "ci:publish": "pnpm build && git status && pnpm publish -r && pnpm changeset tag",
     "clean:artefacts": "npx rimraf ./packages/**/.turbo ./packages/**/dist ./packages/**/coverage",
     "clean:node_modules": "npx rimraf ./**/node_modules ./pnpm-lock.yaml",
     "commit": "npx git-cz",
