@@ -11,7 +11,7 @@
     "build:force": "pnpm clean:artefacts && pnpm build --force",
     "clean:artefacts": "npx rimraf ./packages/**/.turbo ./packages/**/dist ./packages/**/coverage",
     "clean:node_modules": "npx rimraf ./**/node_modules ./pnpm-lock.yaml",
-    "commit_": "npx git-cz",
+    "commit": "npx git-cz",
     "debug:anvil": "LOG_LEVEL=debug anvil",
     "format": "prettier --write \"**/*.{ts,md}\"",
     "format:staged": "pretty-quick --pattern \"packages/**/*.*(ts|md)\"",
