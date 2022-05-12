@@ -77,8 +77,8 @@ importers:
 
   packages/anvil:
     specifiers:
-      '@alloyify/devkit': workspace:0.1.0
-      '@alloyify/schematics-turborepo': workspace:0.1.0
+      '@alloyify/devkit': workspace:0.1.1
+      '@alloyify/schematics-turborepo': workspace:0.1.1
       commander: 9.2.0
       inquirer: 8.2.4
       lodash: 4.17.21
@@ -130,7 +130,7 @@ importers:
 
   packages/schematics-turborepo:
     specifiers:
-      '@alloyify/devkit': workspace:0.1.0
+      '@alloyify/devkit': workspace:0.1.1
       lodash: 4.17.21
     dependencies:
       '@alloyify/devkit': link:../devkit
