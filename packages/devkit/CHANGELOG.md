@@ -1,5 +1,11 @@
 # @alloyify/devkit
 
+## 0.1.2
+
+### Patch Changes
+
+- dd181e9: Updated the release flow
+
 ## 0.1.1
 
 ### Patch Changes
