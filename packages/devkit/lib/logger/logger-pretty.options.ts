@@ -24,4 +24,5 @@ export default () =>
       `${LOG_NAME_COLOR}${log.name} ${LOG_LEVEL_COLORS[log.level]}${LOG_LEVELS_LABLES[log.level]} ${LOG_MSG_COLOR}${
         log.msg
       }`,
+    sync: true,
   });

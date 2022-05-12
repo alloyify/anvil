@@ -18,7 +18,7 @@ import { GenerateTurborepoPackageOptions } from './interfaces';
 
 export class GenerateTurborepoPackageCommand {
   static load(program: Command, cwdConfigs: CwdConfigs): void {
-    logger.debug('GenerateTurborepoCommand.load');
+    logger.info('running Turborepo package generator');
 
     const command = program
       .command(TURBO_PACKAGE_COMMAND.name)
