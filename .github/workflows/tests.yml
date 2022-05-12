@@ -1,0 +1,20 @@
+name: Tests
+
+on: pull_request
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install pnpm
+        run: npm install -g pnpm
+
+      - name: Install and build
+        run: pnpm boot
+
+      - name: Run tests
+        run: pnpm test
