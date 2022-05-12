@@ -1,5 +1,13 @@
 # @alloyify/schematics-turborepo
 
+## 0.1.2
+
+### Patch Changes
+
+- dd181e9: Updated the release flow
+- Updated dependencies [dd181e9]
+  - @alloyify/devkit@0.1.2
+
 ## 0.1.1
 
 ### Patch Changes
