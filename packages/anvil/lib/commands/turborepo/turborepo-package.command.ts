@@ -18,8 +18,6 @@ import { GenerateTurborepoPackageOptions } from './interfaces';
 
 export class GenerateTurborepoPackageCommand {
   static load(program: Command, cwdConfigs: CwdConfigs): void {
-    logger.info('running Turborepo package generator');
-
     const command = program
       .command(TURBO_PACKAGE_COMMAND.name)
       .alias(TURBO_PACKAGE_COMMAND.alias)
@@ -31,7 +29,7 @@ export class GenerateTurborepoPackageCommand {
       .option('-an, --authorName <authorName>', 'Package author`s name')
       .option('-ae, --authorEmail <authorEmail>', 'Package author`s email')
       .action(async (packageName: string, options: GenerateTurborepoPackageOptions) => {
-        logger.debug('GenerateTurborepoCommand run');
+        logger.info('running Turborepo package generator');
 
         const promptOptions = await this.promptOptions(packageName, options, cwdConfigs);
 
