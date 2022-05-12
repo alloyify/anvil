@@ -30,6 +30,7 @@
     }
   },
   "devDependencies": {
+    "@changesets/cli": "2.22.0",
     "@types/inquirer": "8.2.1",
     "@types/jest": "27.4.1",
     "@types/lodash": "4.14.182",
