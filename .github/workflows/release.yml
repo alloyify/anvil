@@ -21,8 +21,16 @@ jobs:
       - name: Install pnpm
         run: npm i pnpm@latest -g
 
-      - name: Setup npmrc
-        run: echo "git-checks=false\nsave-prefix=\"\"\n@alloyify:registry=https://npm.pkg.github.com\n//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" > .npmrc
+      - name: Creating .npmrc
+        run: |
+          cat << EOF > "$HOME/.npmrc"
+            git-checks=false
+            ave-prefix=\"\"
+            @alloyify:registry=https://npm.pkg.github.com
+            //npm.pkg.github.com/:_authToken=$NPM_TOKEN
+          EOF
+        env:
+          NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup pnpm config
         run: pnpm config set store-dir $PNPM_CACHE_FOLDER
