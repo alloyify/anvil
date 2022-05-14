@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
-import { loadCwdConfigs } from '@alloyify/devkit';
+import { CwdType, loadCwdConfigs } from '@alloyify/devkit';
 import { Command } from 'commander';
-import { GenerateTurborepoPackageCommand } from '../commands';
+import { GenerateTurborepoPackageCommand, GenerateTurborepoCommand } from '../commands';
 import { loadAnvilPackageJson, logger } from '../utils';
 
 const cwd = process.cwd();
@@ -17,17 +17,18 @@ logger.info(`v${version}`);
 const program = new Command();
 
 switch (cwdConfigs.cwdType) {
-  case 'empty':
+  case CwdType.EMPTY:
+    GenerateTurborepoCommand.load(program);
     break;
 
-  case 'nx':
+  case CwdType.NX:
     break;
 
-  case 'turborepo':
+  case CwdType.TURBOREPO:
     GenerateTurborepoPackageCommand.load(program, cwdConfigs);
     break;
 
-  case 'not-monorepo':
+  case CwdType.NOT_MONOREPO:
     break;
 
   default:

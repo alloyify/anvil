@@ -2,6 +2,7 @@
   "generators": {
     "package": {
       "scope": "alloyify",
+      "registry": "github",
       "access": "restricted",
       "license": "LICENCE",
       "author": {

@@ -6,18 +6,32 @@
     "package": {
       "factory": "./generators/package/package#packageSchematic",
       "schema": "./generators/package/schema.json",
-      "aliases": ["pkg"],
+      "aliases": ["p"],
       "x-type": "package",
       "description": "Create a Turborepo package."
+    },
+    "turborepo": {
+      "factory": "./generators/turborepo/turborepo#turborepoSchematic",
+      "schema": "./generators/turborepo/schema.json",
+      "aliases": ["t"],
+      "x-type": "turborepo",
+      "description": "Create a Turborepo."
     }
   },
   "generators": {
     "package": {
       "factory": "./generators/package/package",
       "schema": "./generators/package/schema.json",
-      "aliases": ["pkg"],
+      "aliases": ["p"],
       "x-type": "package",
       "description": "Create a Turborepo package."
+    },
+    "turborepo": {
+      "factory": "./generators/turborepo/package",
+      "schema": "./generators/turborepo/schema.json",
+      "aliases": ["t"],
+      "x-type": "turborepo",
+      "description": "Create a Turborepo."
     }
   }
 }

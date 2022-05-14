@@ -1,4 +1,4 @@
-import { PackageAccess } from '../constants';
+import { PackageAccess, PackageRegistry } from '../constants';
 
 export interface AnvilConfig {
   generators?: AnvilConfigGenerators;
@@ -11,6 +11,7 @@ export interface AnvilConfigGenerators {
 export interface AnvilConfigGeneratorsPackage {
   scope?: string;
   access?: PackageAccess;
+  registry?: PackageRegistry;
   license?: string;
   author?: {
     name?: string;

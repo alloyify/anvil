@@ -3,7 +3,6 @@ import {
   GeneratorsRunner,
   GeneratorsRunnerType,
   PACKAGE_ACCESS_CHOICES,
-  PACKAGE_ACCESS_DEFAULT,
   resolvePackageAccess,
   resolveWorkspace,
 } from '@alloyify/devkit';
@@ -12,15 +11,15 @@ import { Command } from 'commander';
 import deepMerge from 'ts-deepmerge';
 import * as inquirer from 'inquirer';
 import { isEmpty, isNil } from 'lodash';
-import { TURBO_PACKAGE_COMMAND } from '../../constants';
+import { TURBOREPO_PACKAGE_COMMAND } from '../../constants';
 import { getCommandCommonOptions, logger } from '../../utils';
 import { GenerateTurborepoPackageOptions } from './interfaces';
 
 export class GenerateTurborepoPackageCommand {
   static load(program: Command, cwdConfigs: CwdConfigs): void {
     const command = program
-      .command(TURBO_PACKAGE_COMMAND.name)
-      .alias(TURBO_PACKAGE_COMMAND.alias)
+      .command(TURBOREPO_PACKAGE_COMMAND.name)
+      .alias(TURBOREPO_PACKAGE_COMMAND.alias)
       .argument('[packageName]', 'Package name')
       .option('-w, --workspace <workspace>', `Workspace. One of: ${cwdConfigs.workspacesList}`)
       .option('-s, --scope <scope>', 'Package scope')
@@ -77,64 +76,66 @@ export class GenerateTurborepoPackageCommand {
       });
     }
 
-    if (!options.yes && cwdConfigs.workspacesList.length > 1 && options.workspace !== defaultOptions.workspace) {
-      questions.push({
-        type: 'list',
-        name: 'workspace',
-        message: 'Please select the workspace',
-        choices: cwdConfigs.workspacesList.map((w, i) => ({
-          name: w,
-          checked: i === 0,
-        })),
-      } as inquirer.ListQuestion);
-    }
+    if (!options.yes) {
+      if (cwdConfigs.workspacesList.length > 1 && options.workspace !== defaultOptions.workspace) {
+        questions.push({
+          type: 'list',
+          name: 'workspace',
+          message: 'Please select the workspace',
+          choices: cwdConfigs.workspacesList.map((w, i) => ({
+            name: w,
+            checked: i === 0,
+          })),
+        } as inquirer.ListQuestion);
+      }
 
-    if (!options.yes && isNil(options.scope)) {
-      questions.push({
-        type: 'input',
-        name: 'scope',
-        message: 'Please type a package scope, if needed',
-        default: defaultOptions.scope,
-      });
-    }
+      if (isNil(options.scope)) {
+        questions.push({
+          type: 'input',
+          name: 'scope',
+          message: 'Please type a package scope, if needed',
+          default: defaultOptions.scope,
+        });
+      }
 
-    if (!options.yes && options.access !== defaultOptions.access) {
-      questions.push({
-        type: 'list',
-        name: 'access',
-        message: 'Please select a package access',
-        choices: PACKAGE_ACCESS_CHOICES.map((a) => ({
-          name: a,
-          checked: a === PACKAGE_ACCESS_DEFAULT,
-        })),
-      } as inquirer.ListQuestion);
-    }
+      if (options.access !== defaultOptions.access) {
+        questions.push({
+          type: 'list',
+          name: 'access',
+          message: 'Please select a package access',
+          choices: PACKAGE_ACCESS_CHOICES.map((a) => ({
+            name: a,
+            checked: a === defaultOptions.access,
+          })),
+        } as inquirer.ListQuestion);
+      }
 
-    if (!options.yes && isNil(options.license)) {
-      questions.push({
-        type: 'input',
-        name: 'license',
-        message: 'Please type a package license, if needed',
-        default: defaultOptions.license,
-      });
-    }
+      if (isNil(options.license)) {
+        questions.push({
+          type: 'input',
+          name: 'license',
+          message: 'Please type a package license, if needed',
+          default: defaultOptions.license,
+        });
+      }
 
-    if (!options.yes && isNil(options.authorName)) {
-      questions.push({
-        type: 'input',
-        name: 'authorName',
-        message: 'Please type a package author`s name',
-        default: defaultOptions.authorName,
-      });
-    }
+      if (isNil(options.authorName)) {
+        questions.push({
+          type: 'input',
+          name: 'authorName',
+          message: 'Please type a package author`s name',
+          default: defaultOptions.authorName,
+        });
+      }
 
-    if (!options.yes && isNil(options.authorEmail)) {
-      questions.push({
-        type: 'input',
-        name: 'authorEmail',
-        message: 'Please type a package author`s email',
-        default: defaultOptions.authorEmail,
-      });
+      if (isNil(options.authorEmail)) {
+        questions.push({
+          type: 'input',
+          name: 'authorEmail',
+          message: 'Please type a package author`s email',
+          default: defaultOptions.authorEmail,
+        });
+      }
     }
 
     if (questions.length) {

@@ -2,6 +2,7 @@ import { getWorkspacesList } from '../pnpm';
 import { loadAnvilConfig } from './anvil-config.loader';
 import { loadNxJson, loadNxWorkspaceJson, loadPackageJson, loadTurboJson } from './json.loaders';
 import { loadPnpmYaml } from './yaml.loaders';
+import { CwdType } from '../constants';
 import { CwdConfigs, GeneratorBaseOptions } from '../interfaces';
 import { Logger } from '../logger';
 
@@ -11,40 +12,23 @@ export function loadCwdConfigs(cwd: string, logger: Logger): CwdConfigs {
   logger.debug(`loading CWD configs ${cwd}`);
 
   configs.packageJson = loadPackageJson(cwd, logger);
-  configs.pnpmWorkspaceYaml = loadPnpmYaml(cwd, logger);
-  configs.workspacesList = getWorkspacesList(configs.pnpmWorkspaceYaml, logger);
   configs.anvilConfig = loadAnvilConfig(cwd, logger);
-
-  if (!configs.packageJson) {
-    configs.cwdType = 'empty';
-
-    logger.debug(`CWD type ${configs.cwdType}`);
-
-    return configs;
-  }
-
   configs.nxJson = loadNxJson(cwd, logger);
   configs.nxWorkspaceJson = loadNxWorkspaceJson(cwd, logger);
-
-  if (configs.nxJson && configs.nxWorkspaceJson) {
-    configs.cwdType = 'nx';
-
-    logger.debug(`CWD type ${configs.cwdType}`);
-
-    return configs;
-  }
-
   configs.turboJson = loadTurboJson(cwd, logger);
 
-  if (configs.turboJson) {
-    configs.cwdType = 'turborepo';
+  configs.cwdType = !configs.packageJson
+    ? CwdType.EMPTY
+    : configs.nxJson && configs.nxWorkspaceJson
+    ? CwdType.NX
+    : configs.turboJson
+    ? CwdType.TURBOREPO
+    : CwdType.NOT_MONOREPO;
 
-    logger.debug(`CWD type ${configs.cwdType}`);
-
-    return configs;
+  if (configs.cwdType === CwdType.NX || configs.cwdType === CwdType.TURBOREPO) {
+    configs.pnpmWorkspaceYaml = loadPnpmYaml(cwd, logger);
+    configs.workspacesList = getWorkspacesList(configs.pnpmWorkspaceYaml, logger);
   }
-
-  configs.cwdType = 'not-monorepo';
 
   logger.debug(`CWD type ${configs.cwdType}`);
 
