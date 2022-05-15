@@ -36,6 +36,7 @@ export function validateOptions(options: PackageGeneratorOptions, logger: Logger
   options.access = !isNil(options.access) ? options.access : fromAnvilConfig.access;
   options.authorName = !isNil(options.authorName) ? options.authorName : fromAnvilConfig.author.name;
   options.authorEmail = !isNil(options.authorEmail) ? options.authorEmail : fromAnvilConfig.author.email;
+  options.repository = options.cwdConfigs.packageJson.repository ?? '';
 
   return options;
 }

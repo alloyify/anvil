@@ -1,0 +1,51 @@
+name: Release
+
+on:
+  pull_request:
+    types: [closed]
+
+env:
+  CI: true
+  PNPM_CACHE_FOLDER: .pnpm-store
+
+jobs:
+  release:
+    if: github.event.pull_request.merged && (startsWith(github.head_ref, 'release') || startsWith(github.head_ref, 'changeset-release'))
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: '0'
+
+      - name: Install pnpm
+        run: npm i pnpm@latest -g
+
+      - name: Creating .npmrc
+        run: |
+          cat << EOF > "$HOME/.npmrc"
+            git-checks=false
+            ave-prefix=\"\"
+            <%= npmRegistryUrlLine %>
+            <%= npmTokenLine %>
+          EOF
+        env:
+          NPM_TOKEN: ${{ secrets.<%= npmTokenCiEnvName %> }}
+
+      - name: Setup pnpm config
+        run: pnpm config set store-dir $PNPM_CACHE_FOLDER
+
+      - name: Install dependencies
+        run: pnpm boot
+
+      - name: Create and publish versions
+        uses: changesets/action@v1
+        with:
+          version: pnpm ci:version
+          commit: 'chore: update versions'
+          title: 'chore: update versions'
+          publish: pnpm ci:publish
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.<%= npmTokenCiEnvName %> }}

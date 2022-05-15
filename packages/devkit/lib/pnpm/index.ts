@@ -1,2 +1,2 @@
 export * from './pnpm-workspace.util';
-export * from './resolve-package-access.util';
+export * from './package-props-resolvers.util';

@@ -1,6 +1,5 @@
+import { CwdType } from '../constants';
 import { AnvilConfig } from './anvil-config.interface';
-
-export type CwdType = 'turborepo' | 'nx' | 'empty' | 'not-monorepo';
 
 export interface CwdConfigs {
   cwdType: CwdType;

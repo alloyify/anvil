@@ -1,6 +1,6 @@
 import Ajv from 'ajv';
 import deepMerge from 'ts-deepmerge';
-import { ANVIL_CONFIG, PACKAGE_ACCESS_DEFAULT } from '../constants';
+import { ANVIL_CONFIG, PACKAGE_ACCESS_DEFAULT, PACKAGE_LICENSE_DEFAULT, PACKAGE_REGISTRY_DEFAULT } from '../constants';
 import { AnvilConfig } from '../interfaces';
 import { Logger } from '../logger';
 import { loadJsonFile } from './json.loaders';
@@ -11,7 +11,8 @@ const defaultConfig: AnvilConfig = {
     package: {
       scope: '',
       access: PACKAGE_ACCESS_DEFAULT,
-      license: 'LICENSE',
+      registry: PACKAGE_REGISTRY_DEFAULT,
+      license: PACKAGE_LICENSE_DEFAULT,
       author: {
         name: '',
         email: '',
@@ -47,6 +48,7 @@ export function validateAnvilConfig(anvilConfig: AnvilConfig, logger: Logger): A
               scope: { type: 'string' },
               access: { type: 'string' },
               license: { type: 'string' },
+              registry: { type: 'string' },
               author: {
                 type: 'object',
                 properties: {

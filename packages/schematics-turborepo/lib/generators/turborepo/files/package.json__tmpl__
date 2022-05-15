@@ -1,11 +1,11 @@
 {
-  "name": "alloyify",
-  "description": "Alloyify Anvil",
+  "name": "<%= nameT.fileName %>",
+  "description": "<%= nameT.fileName %> Turborepo on Steroids",
   "private": true,
   "workspaces": [
-    "packages/*"
+    "<%= workspace %>/*"
   ],
-  "repository": "https://github.com/alloyify/anvil",
+  "repository": "<%= repository %>",
   "scripts": {
     "boot": "pnpm clean:node_modules && pnpm install",
     "build": "turbo run build",
@@ -13,20 +13,16 @@
     "changeset": "changeset",
     "ci:version": "pnpm changeset version && pnpm install --no-frozen-lockfile && git add .",
     "ci:publish": "pnpm build && git status && pnpm publish --no-git-checks -r && pnpm changeset tag",
-    "clean:artefacts": "npx rimraf ./packages/**/.turbo ./packages/**/dist ./packages/**/coverage",
+    "clean:artefacts": "npx rimraf ./<%= workspace %>/**/.turbo ./<%= workspace %>/**/dist ./<%= workspace %>/**/coverage",
     "clean:node_modules": "npx rimraf ./**/node_modules ./pnpm-lock.yaml",
     "commit": "npx git-cz",
-    "debug:anvil": "LOG_LEVEL=debug anvil",
     "format": "prettier --write \"**/*.{ts,md}\"",
-    "format:staged": "pretty-quick --pattern \"packages/**/*.*(ts|md)\"",
-    "link:global": "turbo run link:global",
+    "format:staged": "pretty-quick --pattern \"<%= workspace %>/**/*.*(ts|md)\"",
     "lint": "turbo run lint",
     "lint:staged": "lint-staged",
     "prepare": "husky install",
     "test": "turbo run test",
-    "test:coverage": "pnpm test:coverage:run && pnpm test:coverage:merge",
-    "test:coverage:run": "turbo run test -- --coverage",
-    "test:coverage:merge": "echo \"\""
+    "test:coverage": "turbo run test -- --coverage"
   },
   "config": {
     "commitizen": {
@@ -68,8 +64,5 @@
     "typescript": "4.6.4"
   },
   "packageManager": "pnpm@7.0.0",
-  "dependencies": {
-    "pino": "7.11.0",
-    "pino-pretty": "7.6.1"
-  }
+  "dependencies": {}
 }
