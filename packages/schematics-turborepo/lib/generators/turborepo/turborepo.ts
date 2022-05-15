@@ -1,6 +1,6 @@
 import { convertNxGenerator, getLogger, Tree } from '@alloyify/devkit';
 import { inspect } from 'util';
-import { createFiles, transformOptions, validateOptions } from './helpers';
+import { calulateTepmlateOptions, createFiles, transformOptions, validateOptions } from './helpers';
 import { TurborepoGeneratorOptions } from './schema';
 
 export async function turborepoGenerator(tree: Tree, options: TurborepoGeneratorOptions): Promise<any> {
@@ -11,6 +11,7 @@ export async function turborepoGenerator(tree: Tree, options: TurborepoGenerator
 
   const validatedOptions = validateOptions(options, logger);
   const transformedOptions = transformOptions(validatedOptions, logger);
+  const calculatedTemplateOptions = calulateTepmlateOptions(validatedOptions, logger);
 
   createFiles(
     tree,
@@ -18,6 +19,7 @@ export async function turborepoGenerator(tree: Tree, options: TurborepoGenerator
     {
       ...validatedOptions,
       ...transformedOptions,
+      ...calculatedTemplateOptions,
     },
     logger,
   );

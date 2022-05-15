@@ -16,4 +16,14 @@ export interface TurborepoGeneratorOptionsTransformed {
   nameT: TransformedNames;
   workspaceT: TransformedNames;
   scopeT: TransformedNames;
+  registryUrl: string;
+}
+
+export interface TurborepoGeneratorOptionsCalculated {
+  npmRegistryUrlLine: string;
+  npmTokenLine: string;
+  npmTokenCiEnvName: string;
+  githubFolder: string;
+  huskyFolder: string;
+  changesetFolder: string;
 }

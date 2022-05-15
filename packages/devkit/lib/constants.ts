@@ -29,6 +29,11 @@ export enum PackageRegistry {
   GITHUB = 'github',
 }
 
+export const PackageRegistryUrl = {
+  [PackageRegistry.NPM]: 'registry.npmjs.org',
+  [PackageRegistry.GITHUB]: 'npm.pkg.github.com',
+};
+
 export const PACKAGE_ACCESS_DEFAULT = PackageAccess.RESTRICTED;
 export const PACKAGE_ACCESS_CHOICES = Object.values(PackageAccess);
 export const PACKAGE_LICENSE_DEFAULT = 'LICENSE';

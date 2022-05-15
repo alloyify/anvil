@@ -8,6 +8,7 @@ export interface PackageGeneratorOptions extends GeneratorBaseOptions {
   license?: string;
   authorName?: string;
   authorEmail?: string;
+  repository?: string;
 }
 
 export interface PackageGeneratorOptionsTransformed {

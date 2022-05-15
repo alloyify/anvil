@@ -23,7 +23,7 @@
   "scripts": {
     "build": "tsc && pnpm run copy:jsons && pnpm run copy:templates",
     "copy:jsons": "cpx lib/generators.json dist && cpx 'lib/generators/**/schema.json' dist/generators",
-    "copy:templates": "cpx 'lib/generators/**/{files,files-project-root,workspace}/**/*.*' dist/generators && cpx 'lib/generators/**/{files,files-project-root,workspace}/**/.!(gitignore)' dist/generators",
+    "copy:templates": "cpx 'lib/generators/**/{files,files-project-root,workspace}/**/*' dist/generators && cpx 'lib/generators/**/{files,files-project-root,workspace}/**/.!(gitignore)' dist/generators",
     "lint": "eslint . --fix",
     "test": "jest"
   },

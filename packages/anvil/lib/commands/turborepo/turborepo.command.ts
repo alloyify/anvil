@@ -52,10 +52,11 @@ export class GenerateTurborepoCommand {
   private static async promptOptions(
     name: string,
     options: GenerateTurborepoOptions,
-  ): Promise<GenerateTurborepoOptions & { name: string }> {
+  ): Promise<TurborepoGeneratorOptions & { name: string }> {
     logger.debug('promptOptions');
 
-    const defaultOptions: Partial<GenerateTurborepoOptions> = {
+    const defaultOptions: Partial<TurborepoGeneratorOptions> = {
+      name: name ?? '',
       workspace: PNPM_WORKSPACE_DEFAULT,
       scope: '',
       repository: '',

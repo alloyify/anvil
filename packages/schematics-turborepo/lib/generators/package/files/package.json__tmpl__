@@ -8,6 +8,7 @@
   "publishConfig": {
     "access": "<%= access %>"
   },
+  "repository": "<%= repository %>",
   "files": [
     "dist",
     "LICENSE",
