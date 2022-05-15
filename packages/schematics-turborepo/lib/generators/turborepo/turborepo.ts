@@ -28,7 +28,7 @@ export async function turborepoGenerator(tree: Tree, options: TurborepoGenerator
 
   return async () => {
     logger.info('initilizing git repository');
-    execSync(`cd ${projectCwd} && git init && git checkout -b main`, {
+    execSync('git init && git checkout -b main', {
       cwd: projectCwd,
     });
 
