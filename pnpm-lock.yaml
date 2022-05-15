@@ -77,8 +77,8 @@ importers:
 
   packages/anvil:
     specifiers:
-      '@alloyify/devkit': workspace:0.1.2
-      '@alloyify/schematics-turborepo': workspace:0.1.2
+      '@alloyify/devkit': workspace:0.2.0
+      '@alloyify/schematics-turborepo': workspace:0.2.0
       commander: 9.2.0
       inquirer: 8.2.4
       lodash: 4.17.21
@@ -130,7 +130,7 @@ importers:
 
   packages/schematics-turborepo:
     specifiers:
-      '@alloyify/devkit': workspace:0.1.2
+      '@alloyify/devkit': workspace:0.2.0
       lodash: 4.17.21
     dependencies:
       '@alloyify/devkit': link:../devkit
@@ -4043,7 +4043,7 @@ packages:
       fs.realpath: 1.0.0
       inflight: 1.0.6
       inherits: 2.0.4
-      minimatch: 3.0.4
+      minimatch: 3.1.2
       once: 1.4.0
       path-is-absolute: 1.0.1
 
@@ -5805,6 +5805,7 @@ packages:
     resolution: {integrity: sha512-yJHVQEhyqPLUTgt9B83PXu6W3rx4MvvHvSUvToogpwoGDOUQ+yDrR0HRot+yOCdCO7u4hX3pWft6kWBBcqh0UA==}
     dependencies:
       brace-expansion: 1.1.11
+    dev: false
 
   /minimatch/3.1.2:
     resolution: {integrity: sha512-J7p63hRiAjw1NDEww1W7i37+ByIrOWO5XQQAzZ3VOcL0PNybwpfmV/N05zFAzwQ9USyEcX6t3UO+K5aqBQOIHw==}

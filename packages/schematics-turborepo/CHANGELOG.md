@@ -1,5 +1,16 @@
 # @alloyify/schematics-turborepo
 
+## 0.2.0
+
+### Minor Changes
+
+- 4576604: Turborepo project generator
+
+### Patch Changes
+
+- Updated dependencies [4576604]
+  - @alloyify/devkit@0.2.0
+
 ## 0.1.2
 
 ### Patch Changes
