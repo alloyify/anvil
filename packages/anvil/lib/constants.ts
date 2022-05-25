@@ -1,8 +1,8 @@
 export const LOGGER_NAME = 'anvil';
 
 export const TURBOREPO_PACKAGE_COMMAND = {
-  name: 'turbo-package',
-  alias: 'tp',
+  name: 'package',
+  alias: 'p',
 };
 
 export const TURBOREPO_COMMAND = {

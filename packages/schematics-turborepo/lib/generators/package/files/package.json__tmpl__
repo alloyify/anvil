@@ -5,14 +5,15 @@
   "license": "<%= license %>",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
+  "repository": "<%= repository %>",
   "publishConfig": {
     "access": "<%= access %>"
   },
-  "repository": "<%= repository %>",
   "files": [
     "dist",
     "LICENSE",
-    "README.md"
+    "README.md",
+    "CHANGELOG.md"
   ],
   "author": {
     "name": "<%= authorName %>",
