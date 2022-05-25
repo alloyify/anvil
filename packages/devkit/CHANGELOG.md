@@ -1,5 +1,11 @@
 # @alloyify/devkit
 
+## 0.3.0
+
+### Minor Changes
+
+- f15f8ac: Added schematics-nx package
+
 ## 0.2.0
 
 ### Minor Changes

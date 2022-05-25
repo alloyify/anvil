@@ -1,5 +1,16 @@
 # @alloyify/schematics-turborepo
 
+## 0.3.0
+
+### Minor Changes
+
+- f15f8ac: Added schematics-nx package
+
+### Patch Changes
+
+- Updated dependencies [f15f8ac]
+  - @alloyify/devkit@0.3.0
+
 ## 0.2.0
 
 ### Minor Changes
