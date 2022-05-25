@@ -1,5 +1,13 @@
 # @alloyify/anvil
 
+## 0.3.1
+
+### Patch Changes
+
+- Updated dependencies [6572b96]
+  - @alloyify/devkit@0.3.1
+  - @alloyify/schematics-turborepo@0.3.1
+
 ## 0.3.0
 
 ### Minor Changes
