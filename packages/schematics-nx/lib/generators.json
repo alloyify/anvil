@@ -1,0 +1,37 @@
+{
+  "name": "alloyify/schematics-nx",
+  "version": "0.0.0",
+  "extends": ["@nrwl/workspace"],
+  "schematics": {
+    "package": {
+      "factory": "./generators/package/package#packageSchematic",
+      "schema": "./generators/package/schema.json",
+      "aliases": ["p"],
+      "x-type": "package",
+      "description": "Create NX package."
+    },
+    "nx": {
+      "factory": "./generators/nx/nx#turborepoSchematic",
+      "schema": "./generators/nx/schema.json",
+      "aliases": ["nx"],
+      "x-type": "nx",
+      "description": "Create NX Workspace."
+    }
+  },
+  "generators": {
+    "package": {
+      "factory": "./generators/package/package",
+      "schema": "./generators/package/schema.json",
+      "aliases": ["p"],
+      "x-type": "package",
+      "description": "Create NX package."
+    },
+    "nx": {
+      "factory": "./generators/nx/package",
+      "schema": "./generators/nx/schema.json",
+      "aliases": ["nx"],
+      "x-type": "nx",
+      "description": "Create NX Workspace."
+    }
+  }
+}
