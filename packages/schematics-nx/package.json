@@ -1,7 +1,7 @@
 {
   "name": "@alloyify/schematics-nx",
   "description": "Alloyify NX Schematics package",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "license": "LICENCE",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
