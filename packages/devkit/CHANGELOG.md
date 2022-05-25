@@ -1,5 +1,11 @@
 # @alloyify/devkit
 
+## 0.3.1
+
+### Patch Changes
+
+- 6572b96: Fix devkit
+
 ## 0.3.0
 
 ### Minor Changes

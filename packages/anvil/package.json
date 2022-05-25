@@ -1,7 +1,7 @@
 {
   "name": "@alloyify/anvil",
   "description": "Alloyify Anvil package",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -29,8 +29,8 @@
     "test": "jest"
   },
   "dependencies": {
-    "@alloyify/devkit": "workspace:0.3.0",
-    "@alloyify/schematics-turborepo": "workspace:0.3.0",
+    "@alloyify/devkit": "workspace:0.3.1",
+    "@alloyify/schematics-turborepo": "workspace:0.3.1",
     "commander": "9.2.0",
     "inquirer": "8.2.4",
     "lodash": "4.17.21",
