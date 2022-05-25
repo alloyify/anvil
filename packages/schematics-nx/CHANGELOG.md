@@ -1,5 +1,11 @@
 # @alloyify/schematics-nx
 
+## 0.3.0
+
+### Minor Changes
+
+- 52df6ba: Fix publish versions
+
 ## 0.2.0
 
 ### Minor Changes
