@@ -2,7 +2,7 @@
   "name": "@alloyify/schematics-turborepo",
   "description": "Alloyify Turborepo Schematics package",
   "version": "0.3.1",
-  "license": "MIT",
+  "license": "LICENCE",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "repository": "https://github.com/alloyify/anvil",

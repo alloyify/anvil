@@ -27,9 +27,6 @@ export function calulateTepmlateOptions(
     }`,
     npmTokenLine: `//${PackageRegistryUrl[options.registry]}/:_authToken=$NPM_TOKEN`,
     npmTokenCiEnvName: options.registry === PackageRegistry.NPM ? 'NPM_TOKEN' : 'GITHUB_TOKEN',
-    githubFolder: '.github',
-    huskyFolder: '.husky',
-    changesetFolder: '.changeset',
   };
 
   return calculated;

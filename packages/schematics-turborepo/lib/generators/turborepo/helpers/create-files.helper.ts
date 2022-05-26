@@ -12,5 +12,9 @@ export function createFiles(
   logger: Logger,
 ): void {
   logger.debug('createFiles');
-  generateFiles(tree, join(__dirname, '..', 'files'), target, { tmpl: '', ...mergedOptions });
+  generateFiles(tree, join(__dirname, '..', 'files'), target, {
+    dot: '.',
+    tmpl: '',
+    ...mergedOptions,
+  });
 }

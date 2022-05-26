@@ -11,8 +11,8 @@
       "description": "Create NX package."
     },
     "nx": {
-      "factory": "./generators/nx/nx#turborepoSchematic",
-      "schema": "./generators/nx/schema.json",
+      "factory": "./generators/workspace/nx#turborepoSchematic",
+      "schema": "./generators/workspace/schema.json",
       "aliases": ["nx"],
       "x-type": "nx",
       "description": "Create NX Workspace."
@@ -27,8 +27,8 @@
       "description": "Create NX package."
     },
     "nx": {
-      "factory": "./generators/nx/package",
-      "schema": "./generators/nx/schema.json",
+      "factory": "./generators/workspace/package",
+      "schema": "./generators/workspace/schema.json",
       "aliases": ["nx"],
       "x-type": "nx",
       "description": "Create NX Workspace."
