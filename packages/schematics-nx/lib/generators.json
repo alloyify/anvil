@@ -13,7 +13,7 @@
     "nx": {
       "factory": "./generators/workspace/nx#turborepoSchematic",
       "schema": "./generators/workspace/schema.json",
-      "aliases": ["nx"],
+      "aliases": ["n"],
       "x-type": "nx",
       "description": "Create NX Workspace."
     }
@@ -29,7 +29,7 @@
     "nx": {
       "factory": "./generators/workspace/package",
       "schema": "./generators/workspace/schema.json",
-      "aliases": ["nx"],
+      "aliases": ["n"],
       "x-type": "nx",
       "description": "Create NX Workspace."
     }

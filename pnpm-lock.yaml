@@ -78,6 +78,7 @@ importers:
   packages/anvil:
     specifiers:
       '@alloyify/devkit': workspace:0.3.1
+      '@alloyify/schematics-nx': workspace:0.3.1
       '@alloyify/schematics-turborepo': workspace:0.3.1
       commander: 9.2.0
       inquirer: 8.2.4
@@ -85,6 +86,7 @@ importers:
       ts-deepmerge: 2.0.1
     dependencies:
       '@alloyify/devkit': link:../devkit
+      '@alloyify/schematics-nx': link:../schematics-nx
       '@alloyify/schematics-turborepo': link:../schematics-turborepo
       commander: 9.2.0
       inquirer: 8.2.4
@@ -2138,8 +2140,8 @@ packages:
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
     dependencies:
-      caniuse-lite: 1.0.30001343
-      electron-to-chromium: 1.4.139
+      caniuse-lite: 1.0.30001344
+      electron-to-chromium: 1.4.140
       escalade: 3.1.1
       node-releases: 2.0.5
       picocolors: 1.0.0
@@ -2234,8 +2236,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /caniuse-lite/1.0.30001343:
-    resolution: {integrity: sha512-8KeCrAtPMabo/XW14B+R9sZYoClx1n0b+WYgwDKZPtWR3TcdvWzdSy7mPyFEmR5WU1St9v1PW6sdO5dkFOEzfA==}
+  /caniuse-lite/1.0.30001344:
+    resolution: {integrity: sha512-0ZFjnlCaXNOAYcV7i+TtdKBp0L/3XEU2MF/x6Du1lrh+SRX4IfzIVL4HNJg5pB2PmFb8rszIGyOvsZnqqRoc2g==}
     dev: true
 
   /chalk/2.4.2:
@@ -2499,7 +2501,7 @@ packages:
     dev: true
 
   /console-control-strings/1.1.0:
-    resolution: {integrity: sha1-PXz0Rk22RG6mRL9LOVB/mFEAjo4=}
+    resolution: {integrity: sha512-ty/fTekppD2fIwRvnZAVdeOiGd1c7YXEixbgJTNzqcxJWKQnjJ/V1bNEEE6hygpM3WjwHFUVK6HTjWSzV4a8sQ==}
     dev: false
 
   /conventional-changelog-angular/5.0.13:
@@ -2671,7 +2673,7 @@ packages:
     dev: true
 
   /copy-descriptor/0.1.1:
-    resolution: {integrity: sha1-Z29us8OZl8LuGsOpJP1hJHSPV40=}
+    resolution: {integrity: sha512-XgZ0pFcakEUlbwQEVNg3+QAis1FyTL3Qel9FYy8pSkQqoG3PNoT0bOCQtOXcOkur21r2Eq2kI+IE+gsmAEVlYw==}
     engines: {node: '>=0.10.0'}
     dev: true
 
@@ -2736,7 +2738,7 @@ packages:
     dev: true
 
   /cross-spawn/5.1.0:
-    resolution: {integrity: sha1-6L0O/uWPz/b4+UUQoKVUu/ojVEk=}
+    resolution: {integrity: sha512-pTgQJ5KC0d2hcY8eyL1IzlBPYjTkyH72XRZPnLyKus2mBfNjQs3klqbJU2VILqZryAZUt9JOb3h/mWMy23/f5A==}
     dependencies:
       lru-cache: 4.1.5
       shebang-command: 1.2.0
@@ -3067,8 +3069,8 @@ packages:
       jake: 10.8.5
     dev: false
 
-  /electron-to-chromium/1.4.139:
-    resolution: {integrity: sha512-lYxzcUCjWxxVug+A7UxBCUiVr13TCjfZFYJS9Lq1VpU/ErwV4a6zUQo9dfojuGpw/L/x9REGuBl6ICQPGgbs3g==}
+  /electron-to-chromium/1.4.140:
+    resolution: {integrity: sha512-NLz5va823QfJBYOO/hLV4AfU4Crmkl/6Hl2pH3qdJcmi0ySZ3YTWHxOlDm3uJOFBEPy3pIhu8gKQo6prQTWKKA==}
     dev: true
 
   /emittery/0.8.1:
@@ -3120,7 +3122,7 @@ packages:
       is-shared-array-buffer: 1.0.2
       is-string: 1.0.7
       is-weakref: 1.0.2
-      object-inspect: 1.12.1
+      object-inspect: 1.12.2
       object-keys: 1.1.1
       object.assign: 4.1.2
       regexp.prototype.flags: 1.4.3
@@ -5472,7 +5474,7 @@ packages:
       listr2: 4.0.5
       micromatch: 4.0.5
       normalize-path: 3.0.0
-      object-inspect: 1.12.1
+      object-inspect: 1.12.2
       pidtree: 0.5.0
       string-argv: 0.3.1
       supports-color: 9.2.2
@@ -6055,8 +6057,8 @@ packages:
       kind-of: 3.2.2
     dev: true
 
-  /object-inspect/1.12.1:
-    resolution: {integrity: sha512-Y/jF6vnvEtOPGiKD1+q+X0CiUYRQtEHp89MLLUJ7TUivtH8Ugn2+3A7Rynqk7BRsAoqeOQWnFnjpDrKSxDgIGA==}
+  /object-inspect/1.12.2:
+    resolution: {integrity: sha512-z+cPxW0QGUp0mcqcsgQyLVRDoXFQbXOwBaqyF7VIgI4TWNQsDHrBpUQslRmIfAoYWdYzs6UlKJtB2XJpTaNSpQ==}
     dev: true
 
   /object-keys/1.1.1:
@@ -6975,7 +6977,7 @@ packages:
     dependencies:
       call-bind: 1.0.2
       get-intrinsic: 1.1.1
-      object-inspect: 1.12.1
+      object-inspect: 1.12.2
     dev: true
 
   /signal-exit/3.0.7:
