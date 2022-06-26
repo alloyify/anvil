@@ -55,6 +55,7 @@ export function validateAnvilConfig(anvilConfig: AnvilConfig, logger: Logger): A
                   name: { type: 'string' },
                   email: { type: 'string' },
                 },
+                additionalProperties: false,
               },
             },
             additionalProperties: false,

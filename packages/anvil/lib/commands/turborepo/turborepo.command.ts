@@ -66,6 +66,7 @@ export class GenerateTurborepoCommand {
       authorName: '',
       authorEmail: '',
     };
+
     const questions: inquirer.Question[] = [];
     const folderExists = (v: string) => existsSync(join(options.cwd, v));
     let answers: any = {};

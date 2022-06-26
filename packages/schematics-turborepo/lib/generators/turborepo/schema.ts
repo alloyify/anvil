@@ -23,7 +23,4 @@ export interface TurborepoGeneratorOptionsCalculated {
   npmRegistryUrlLine: string;
   npmTokenLine: string;
   npmTokenCiEnvName: string;
-  githubFolder: string;
-  huskyFolder: string;
-  changesetFolder: string;
 }

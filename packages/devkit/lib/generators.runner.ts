@@ -36,7 +36,7 @@ export class GeneratorsRunner {
       printChanges(changes);
     }
 
-    if (!options?.dryRun || !this.options.dryRun) {
+    if (!options?.dryRun && !this.options.dryRun) {
       this.applyChanges(changes);
     }
 

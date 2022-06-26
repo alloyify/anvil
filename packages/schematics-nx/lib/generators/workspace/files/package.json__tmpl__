@@ -1,0 +1,51 @@
+{
+  "name": "<%= nameT.fileName %>",
+  "description": "<%= nameT.fileName %> Nx Workspace",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "clean:node_modules": "npx rimraf ./**/node_modules ./pnpm-lock.yaml",
+    "commit": "npx git-cz",
+    "boot": "pnpm clean:node_modules && pnpm install",
+    "build": "nx build",
+    "format": "prettier --write \"**/*.{ts,md}\"",
+    "format:staged": "pretty-quick --pattern \"**/*.(ts|md)\"",
+    "lint": "nx lint",
+    "prepare": "husky install",
+    "start": "nx serve",
+    "test": "nx test"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-conventional-changelog"
+    }
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@nrwl/cli": "14.3.6",
+    "@nrwl/eslint-plugin-nx": "14.3.6",
+    "@nrwl/jest": "14.3.6",
+    "@nrwl/linter": "14.3.6",
+    "@nrwl/nest": "14.3.6",
+    "@nrwl/node": "14.3.6",
+    "@nrwl/workspace": "14.3.6",
+    "@types/jest": "27.4.1",
+    "@types/node": "16.11.7",
+    "@typescript-eslint/eslint-plugin": "5.24.0",
+    "@typescript-eslint/parser": "5.24.0",
+    "commitizen": "4.2.4",
+    "conventional-changelog-cli": "2.2.2",
+    "cz-conventional-changelog": "3.3.0",
+    "eslint": "8.18.0",
+    "eslint-config-prettier": "8.1.0",
+    "husky": "8.0.1",
+    "jest": "27.5.1",
+    "nx": "14.3.6",
+    "prettier": "2.7.1",
+    "pretty-quick": "3.1.3",
+    "rimraf": "3.0.2",
+    "ts-jest": "27.1.5",
+    "ts-node": "10.8.1",
+    "typescript": "4.7.4"
+  }
+}

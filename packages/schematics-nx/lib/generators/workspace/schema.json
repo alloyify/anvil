@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "AlloyofyNxGenerator",
+  "title": "Alloyify Nx Options Schema",
+  "cli": "nx",
+  "type": "object",
+  "properties": {
+    "name": {
+      "description": "Monorepo name.",
+      "type": "string",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "Please type the monorepo name"
+    }
+  },
+  "additionalProperties": false,
+  "required": ["name"]
+}

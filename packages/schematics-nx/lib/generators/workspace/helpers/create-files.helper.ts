@@ -1,14 +1,10 @@
 import { generateFiles, join, Logger, Tree } from '@alloyify/devkit';
-import {
-  TurborepoGeneratorOptions,
-  TurborepoGeneratorOptionsCalculated,
-  TurborepoGeneratorOptionsTransformed,
-} from '../schema';
+import { WorkspaceGeneratorOptions, WorkspaceGeneratorOptionsTransformed } from '../schema';
 
 export function createFiles(
   tree: Tree,
   target: string,
-  mergedOptions: TurborepoGeneratorOptions & TurborepoGeneratorOptionsCalculated & TurborepoGeneratorOptionsTransformed,
+  mergedOptions: WorkspaceGeneratorOptions & WorkspaceGeneratorOptionsTransformed,
   logger: Logger,
 ): void {
   logger.debug('createFiles');
