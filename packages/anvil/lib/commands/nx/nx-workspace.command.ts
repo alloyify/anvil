@@ -16,6 +16,7 @@ export class GenerateNxWorkspaceCommand {
       .command(NX_WORKSPACE_COMMAND.name)
       .alias(NX_WORKSPACE_COMMAND.alias)
       .argument('[name]', 'Monorepo name')
+      .option('-s, --scope <scope>', 'NPM scope')
       .action(async (name: string, options: GenerateNxWorkspaceOptions) => {
         const promptOptions = await this.promptOptions(name, options);
 
@@ -41,6 +42,7 @@ export class GenerateNxWorkspaceCommand {
 
     const defaultOptions: Partial<WorkspaceGeneratorOptions> = {
       name: name ?? '',
+      scope: '',
     };
 
     const questions: inquirer.Question[] = [];
@@ -54,6 +56,17 @@ export class GenerateNxWorkspaceCommand {
         message: 'Please type the monorepo name',
         validate: (val) => !isEmpty(val) && !isNil(val) && !folderExists(val),
       });
+    }
+
+    if (!options.yes) {
+      if (isNil(options.scope)) {
+        questions.push({
+          type: 'input',
+          name: 'scope',
+          message: 'Please type the NPM scope, if needed',
+          default: defaultOptions.scope,
+        });
+      }
     }
 
     if (questions.length) {

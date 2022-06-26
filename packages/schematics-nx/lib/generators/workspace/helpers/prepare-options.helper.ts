@@ -9,6 +9,7 @@ export function transformOptions(
 
   return {
     nameT: names(options.name),
+    scopeT: names(options.scope),
   };
 }
 
@@ -16,6 +17,7 @@ export function validateOptions(options: WorkspaceGeneratorOptions, logger: Logg
   logger.debug('validateOptions');
 
   options.cwd = options.cwd ?? process.cwd();
+  options.scope = options.scope ? options.scope : options.name;
   logger.debug(`CWD ${options.cwd}`);
 
   return options;

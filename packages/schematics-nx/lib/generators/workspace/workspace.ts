@@ -25,21 +25,24 @@ export async function workspaceGenerator(tree: Tree, options: WorkspaceGenerator
   );
 
   return async () => {
-    logger.info('initilizing git repository');
-    execSync('git init && git checkout -b main', {
-      cwd: projectCwd,
-    });
+    if (!options.dryRun) {
+      logger.debug('initilizing git repository');
+      execSync('git init && git checkout -b main', {
+        cwd: projectCwd,
+        stdio: 'ignore',
+      });
 
-    // logger.info('installing dependencies');
-    // execSync('pnpm install', {
-    //   cwd: projectCwd,
-    //   stdio: 'inherit',
-    // });
+      logger.debug('installing dependencies');
+      execSync('pnpm install', {
+        cwd: projectCwd,
+        stdio: 'inherit',
+      });
 
-    // logger.info('formatting');
-    // execSync('pnpm format', {
-    //   cwd: projectCwd,
-    // });
+      logger.debug('formatting');
+      execSync('pnpm format', {
+        cwd: projectCwd,
+      });
+    }
   };
 }
 

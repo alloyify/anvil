@@ -12,7 +12,7 @@
     "build:force": "pnpm clean:artefacts && pnpm build --force",
     "changeset": "changeset",
     "ci:version": "pnpm changeset version && pnpm install --no-frozen-lockfile && git add .",
-    "ci:publish": "pnpm build && git status && pnpm publish --no-git-checks -r && pnpm changeset tag",
+    "ci:publish": "pnpm build && git status && pnpm changeset publish && pnpm changeset tag",
     "clean:artefacts": "npx rimraf ./packages/**/.turbo ./packages/**/dist ./packages/**/coverage",
     "clean:node_modules": "npx rimraf ./**/node_modules ./pnpm-lock.yaml",
     "commit": "npx git-cz",
