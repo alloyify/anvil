@@ -1,2 +1,2 @@
 export * from './application';
-export * from './workspace';
+export * from './schema';

@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "AlloyifyApplicationGenerator",
+  "title": "Alloyify Application Options Schema",
+  "cli": "nx",
+  "type": "object",
+  "properties": {
+    "name": {
+      "description": "The name of the application.",
+      "type": "string",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "What name would you like to use for the new application?"
+    },
+    "directory": {
+      "description": "The directory of the new application.",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "required": ["name"]
+}

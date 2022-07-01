@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/schema",
-  "$id": "AlloyofyTurborepoGenerator",
+  "$id": "AlloyifyTurborepoGenerator",
   "title": "Alloyify Turborepo Options Schema",
   "cli": "nx",
   "type": "object",

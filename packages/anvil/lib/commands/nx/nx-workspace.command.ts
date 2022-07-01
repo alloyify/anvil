@@ -7,7 +7,7 @@ import * as inquirer from 'inquirer';
 import { isEmpty, isNil } from 'lodash';
 import { join } from 'path';
 import { NX_WORKSPACE_COMMAND } from '../../constants';
-import { getCommandCommonOptions, logger } from '../../utils';
+import { getCommandCommonOptions, logger, runPrompts } from '../../utils';
 import { GenerateNxWorkspaceOptions } from './interfaces';
 
 export class GenerateNxWorkspaceCommand {
@@ -18,6 +18,8 @@ export class GenerateNxWorkspaceCommand {
       .argument('[name]', 'Monorepo name')
       .option('-s, --scope <scope>', 'NPM scope')
       .action(async (name: string, options: GenerateNxWorkspaceOptions) => {
+        logger.info('running Nx workspace generator');
+
         const promptOptions = await this.promptOptions(name, options);
 
         const runner = new GeneratorsRunner({
@@ -37,7 +39,7 @@ export class GenerateNxWorkspaceCommand {
   private static async promptOptions(
     name: string,
     options: GenerateNxWorkspaceOptions,
-  ): Promise<WorkspaceGeneratorOptions & { name: string }> {
+  ): Promise<WorkspaceGeneratorOptions> {
     logger.debug('promptOptions');
 
     const defaultOptions: Partial<WorkspaceGeneratorOptions> = {
@@ -47,7 +49,6 @@ export class GenerateNxWorkspaceCommand {
 
     const questions: inquirer.Question[] = [];
     const folderExists = (v: string) => existsSync(join(options.cwd, v));
-    let answers: any = {};
 
     if (!name || folderExists(name)) {
       questions.push({
@@ -69,15 +70,7 @@ export class GenerateNxWorkspaceCommand {
       }
     }
 
-    if (questions.length) {
-      const prompt = inquirer.createPromptModule();
-      answers = (await prompt(questions)
-        .then((a) => a)
-        .catch((e) => {
-          logger.error('error while prompting options:');
-          logger.error(e);
-        })) as any;
-    }
+    const answers = await runPrompts<WorkspaceGeneratorOptions>(questions);
 
     return deepMerge(defaultOptions, options, answers);
   }

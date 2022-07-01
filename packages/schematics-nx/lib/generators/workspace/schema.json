@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/schema",
-  "$id": "AlloyofyNxGenerator",
+  "$id": "AlloyifyNxGenerator",
   "title": "Alloyify Nx Options Schema",
   "cli": "nx",
   "type": "object",

@@ -5,6 +5,11 @@ export const NX_WORKSPACE_COMMAND = {
   alias: 'n',
 };
 
+export const NX_APP_COMMAND = {
+  name: 'app',
+  alias: 'a',
+};
+
 export const TURBOREPO_COMMAND = {
   name: 'turbo',
   alias: 't',

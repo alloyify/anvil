@@ -15,7 +15,7 @@ import * as inquirer from 'inquirer';
 import { isEmpty, isNil } from 'lodash';
 import { join } from 'path';
 import { TURBOREPO_COMMAND } from '../../constants';
-import { getCommandCommonOptions, logger } from '../../utils';
+import { getCommandCommonOptions, logger, runPrompts } from '../../utils';
 import { GenerateTurborepoOptions } from './interfaces';
 
 export class GenerateTurborepoCommand {
@@ -33,6 +33,8 @@ export class GenerateTurborepoCommand {
       .option('-an, --authorName <authorName>', 'Packages author`s name')
       .option('-ae, --authorEmail <authorEmail>', 'Packages author`s email')
       .action(async (name: string, options: GenerateTurborepoOptions) => {
+        logger.info('running Turborepo generator');
+
         const promptOptions = await this.promptOptions(name, options);
 
         const runner = new GeneratorsRunner({
@@ -52,7 +54,7 @@ export class GenerateTurborepoCommand {
   private static async promptOptions(
     name: string,
     options: GenerateTurborepoOptions,
-  ): Promise<TurborepoGeneratorOptions & { name: string }> {
+  ): Promise<TurborepoGeneratorOptions> {
     logger.debug('promptOptions');
 
     const defaultOptions: Partial<TurborepoGeneratorOptions> = {
@@ -69,7 +71,6 @@ export class GenerateTurborepoCommand {
 
     const questions: inquirer.Question[] = [];
     const folderExists = (v: string) => existsSync(join(options.cwd, v));
-    let answers: any = {};
 
     if (!name || folderExists(name)) {
       questions.push({
@@ -163,15 +164,7 @@ export class GenerateTurborepoCommand {
       options.workspace = defaultOptions.workspace;
     }
 
-    if (questions.length) {
-      const prompt = inquirer.createPromptModule();
-      answers = (await prompt(questions)
-        .then((a) => a)
-        .catch((e) => {
-          logger.error('error while prompting options:');
-          logger.error(e);
-        })) as any;
-    }
+    const answers = await runPrompts<TurborepoGeneratorOptions>(questions);
 
     return deepMerge(defaultOptions, options, answers);
   }
