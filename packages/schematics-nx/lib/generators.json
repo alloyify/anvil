@@ -3,12 +3,12 @@
   "version": "0.0.0",
   "extends": ["@nrwl/workspace"],
   "schematics": {
-    "package": {
-      "factory": "./generators/package/package#packageSchematic",
-      "schema": "./generators/package/schema.json",
+    "application": {
+      "factory": "./generators/application/application#applicationSchematic",
+      "schema": "./generators/application/schema.json",
       "aliases": ["p"],
-      "x-type": "package",
-      "description": "Create NX package."
+      "x-type": "application",
+      "description": "Create NX application."
     },
     "nx": {
       "factory": "./generators/workspace/nx#turborepoSchematic",
@@ -19,15 +19,15 @@
     }
   },
   "generators": {
-    "package": {
-      "factory": "./generators/package/package",
-      "schema": "./generators/package/schema.json",
+    "application": {
+      "factory": "./generators/application/application",
+      "schema": "./generators/application/schema.json",
       "aliases": ["p"],
-      "x-type": "package",
-      "description": "Create NX package."
+      "x-type": "application",
+      "description": "Create NX application."
     },
     "nx": {
-      "factory": "./generators/workspace/package",
+      "factory": "./generators/workspace/application",
       "schema": "./generators/workspace/schema.json",
       "aliases": ["n"],
       "x-type": "nx",

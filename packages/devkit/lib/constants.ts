@@ -39,3 +39,8 @@ export const PACKAGE_ACCESS_CHOICES = Object.values(PackageAccess);
 export const PACKAGE_LICENSE_DEFAULT = 'LICENSE';
 export const PACKAGE_REGISTRY_DEFAULT = PackageRegistry.NPM;
 export const PACKAGE_REGISTRY_CHOICES = Object.values(PackageRegistry);
+
+export const NX_GENERATORS_DEFAULT_OPTIONS = {
+  linter: 'eslint',
+  unitTestRunner: 'jest',
+};

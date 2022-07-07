@@ -1,0 +1,4 @@
+<%= nameT.constantName %>__IDENTITY=<%= nameT.fileName %>
+<%= nameT.constantName %>__NATS_QUEUE=<%= nameT.fileName %>_queue
+NATS_HOST=nats://localhost
+NATS_PORT=4222

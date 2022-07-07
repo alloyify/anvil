@@ -1,0 +1,6 @@
+import { NatsConfigHelper } from '@alloyify/microservices';
+import { APP_NAME } from '../constants';
+
+export const [, getNatsConfig] = NatsConfigHelper.getConfig({
+  appEnvName: APP_NAME,
+});

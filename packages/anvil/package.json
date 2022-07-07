@@ -32,6 +32,7 @@
     "@alloyify/devkit": "workspace:0.3.1",
     "@alloyify/schematics-nx": "workspace:0.3.1",
     "@alloyify/schematics-turborepo": "workspace:0.3.1",
+    "@alloyify/utils": "0.1.0",
     "commander": "9.2.0",
     "inquirer": "8.2.4",
     "lodash": "4.17.21",

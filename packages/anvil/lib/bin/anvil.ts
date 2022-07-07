@@ -2,7 +2,12 @@
 
 import { CwdType, loadCwdConfigs } from '@alloyify/devkit';
 import { Command } from 'commander';
-import { GenerateNxWorkspaceCommand, GenerateTurborepoPackageCommand, GenerateTurborepoCommand } from '../commands';
+import {
+  GenerateNxAppCommand,
+  GenerateNxWorkspaceCommand,
+  GenerateTurborepoPackageCommand,
+  GenerateTurborepoCommand,
+} from '../commands';
 import { loadAnvilPackageJson, logger } from '../utils';
 
 const cwd = process.cwd();
@@ -23,6 +28,7 @@ switch (cwdConfigs.cwdType) {
     break;
 
   case CwdType.NX:
+    GenerateNxAppCommand.load(program);
     break;
 
   case CwdType.TURBOREPO:

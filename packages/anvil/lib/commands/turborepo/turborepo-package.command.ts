@@ -12,7 +12,7 @@ import deepMerge from 'ts-deepmerge';
 import * as inquirer from 'inquirer';
 import { isEmpty, isNil } from 'lodash';
 import { TURBOREPO_PACKAGE_COMMAND } from '../../constants';
-import { getCommandCommonOptions, logger } from '../../utils';
+import { getCommandCommonOptions, logger, runPrompts } from '../../utils';
 import { GenerateTurborepoPackageOptions } from './interfaces';
 
 export class GenerateTurborepoPackageCommand {
@@ -51,7 +51,7 @@ export class GenerateTurborepoPackageCommand {
     packageName: string,
     options: GenerateTurborepoPackageOptions,
     cwdConfigs: CwdConfigs,
-  ): Promise<PackageGeneratorOptions & { packageName: string }> {
+  ): Promise<PackageGeneratorOptions> {
     logger.debug('promptOptions');
 
     const fromAnvilConfig = cwdConfigs.anvilConfig.generators.package;
@@ -65,7 +65,6 @@ export class GenerateTurborepoPackageCommand {
       authorEmail: fromAnvilConfig.author.email,
     };
     const questions: inquirer.Question[] = [];
-    let answers: any = {};
 
     if (!packageName) {
       questions.push({
@@ -138,15 +137,7 @@ export class GenerateTurborepoPackageCommand {
       }
     }
 
-    if (questions.length) {
-      const prompt = inquirer.createPromptModule();
-      answers = (await prompt(questions)
-        .then((a) => a)
-        .catch((e) => {
-          logger.error('error while prompting options:');
-          logger.error(e);
-        })) as any;
-    }
+    const answers = await runPrompts<PackageGeneratorOptions>(questions);
 
     return deepMerge(defaultOptions, options, answers);
   }
