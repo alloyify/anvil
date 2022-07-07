@@ -1,0 +1,2 @@
+<%= nameT.constantName %>__PORT=3000
+<%= nameT.constantName %>__IDENTITY=<%= nameT.fileName %>

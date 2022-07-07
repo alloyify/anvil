@@ -1,0 +1,23 @@
+import { Logger } from '@nestjs/common';
+import { NestFactory } from '@nestjs/core';
+import { MicroserviceOptions } from '@nestjs/microservices';
+import { appConfig, AppConfig, natsConfig } from './config';
+import { AppModule } from './app.module';
+
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule);
+
+  const config = app.get<AppConfig>(appConfig.KEY);
+  const options = app.get<MicroserviceOptions>(natsConfig.KEY);
+
+  app.connectMicroservice(options, { inheritAppConfig: true });
+
+  await app.startAllMicroservices();
+  await app.listen(config.port, () => {
+    Logger.log(
+      `${config.identity} is running at http://localhost:${config.port}`,
+    );
+  });
+}
+
+bootstrap();
