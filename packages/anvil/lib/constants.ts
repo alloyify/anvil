@@ -19,3 +19,8 @@ export const TURBOREPO_PACKAGE_COMMAND = {
   name: 'package',
   alias: 'p',
 };
+
+export const TURBOREPO_DIGEST_COMMAND = {
+  name: 'digest',
+  alias: 'd',
+};

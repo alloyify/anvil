@@ -4,7 +4,10 @@ import { appConfig, AppConfig, getNatsConfig } from './config';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
-  const app = await NestFactory.createMicroservice(AppModule, getNatsConfig());
+  const app = await NestFactory.createMicroservice(
+    AppModule,
+    await getNatsConfig(),
+  );
   const config = app.get<AppConfig>(appConfig.KEY);
 
   await app.listen();

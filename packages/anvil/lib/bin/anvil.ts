@@ -7,6 +7,7 @@ import {
   GenerateNxWorkspaceCommand,
   GenerateTurborepoPackageCommand,
   GenerateTurborepoCommand,
+  RunTurborepoDigestCommand,
 } from '../commands';
 import { loadAnvilPackageJson, logger } from '../utils';
 
@@ -33,6 +34,11 @@ switch (cwdConfigs.cwdType) {
 
   case CwdType.TURBOREPO:
     GenerateTurborepoPackageCommand.load(program, cwdConfigs);
+
+    if (cwdConfigs.dotAnvilConfig) {
+      RunTurborepoDigestCommand.load(program, cwdConfigs);
+    }
+
     break;
 
   case CwdType.NOT_MONOREPO:

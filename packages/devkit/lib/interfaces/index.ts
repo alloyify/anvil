@@ -1,5 +1,6 @@
 export * from './anvil-config.interface';
 export * from './cwd-configs.interface';
+export * from './dot-anvil-config.interface';
 export * from './generator-base-options.interface';
 export * from './generators-runner-options.interface';
 export * from './npm-dependency.interface';

@@ -20,3 +20,4 @@
 .npmrc
 /**/.turbo
 /<%= workspace %>/**/dist
+.anvil.*

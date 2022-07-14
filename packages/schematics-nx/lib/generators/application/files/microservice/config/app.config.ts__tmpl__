@@ -1,16 +1,14 @@
-import { ConfigHelper } from '@alloyify/config';
-import { ConfigType } from '@nestjs/config';
+import { ConfigHelper, ConfigType } from '@alloyify/config';
 import { APP_NAME } from '../constants';
 
-const configHelper = ConfigHelper.create(
+const configGetter = ConfigHelper.create(
   (env) => ({
     identity: env('IDENTITY').required().asString(),
   }),
   'app',
 );
 
-export const [appConfig, getAppConfig, InjectAppConfig] = configHelper.getConfig({
-  appEnvName: APP_NAME,
-});
+export const [appConfig] =
+  configGetter(APP_NAME);
 
-export type AppConfig = ConfigType<typeof getAppConfig>;
+export type AppConfig = ConfigType<typeof appConfig>;
