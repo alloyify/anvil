@@ -1,12 +1,12 @@
+import { ConfigModule } from '@alloyify/config';
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
-import { getAppConfig, getNatsConfig } from './config';
+import { appConfig, natsConfig } from './config';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      load: [getAppConfig, getNatsConfig],
+      load: [appConfig, natsConfig],
     }),
   ],
 })

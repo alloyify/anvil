@@ -20,4 +20,5 @@
 .npmrc
 /**/.turbo
 /packages/**/dist
+.anvil.*
 

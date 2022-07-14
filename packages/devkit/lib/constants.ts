@@ -1,4 +1,5 @@
 export const ANVIL_CONFIG = 'anvil';
+export const DOT_ANVIL_CONFIG = '.anvil';
 export const NX_JSON = 'nx';
 export const TURBO_JSON = 'turbo';
 export const PACKAGE_JSON = 'package';
