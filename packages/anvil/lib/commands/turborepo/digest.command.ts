@@ -70,8 +70,6 @@ export class RunTurborepoDigestCommand {
       });
   }
 
-  private static installPackages() {}
-
   private static async createPackageSymlink(
     targetName: string,
     packageName: string,
