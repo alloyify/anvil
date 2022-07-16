@@ -13,8 +13,20 @@ jobs:
       - name: Install pnpm
         run: npm i pnpm@latest -g
 
+      - name: Create .npmrc
+        run: |
+          cat << EOF > "$HOME/.npmrc"
+            save-prefix=\"\"
+            strict-peer-dependencies=false
+            auto-install-peers=true
+            @alloyify:registry=https://npm.pkg.github.com
+            //npm.pkg.github.com/:_authToken=$NPM_TOKEN
+          EOF
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
       - name: Install dependencies
-        run: pnpm boot
+        run: pnpm install
 
       - name: Build packages
         run: pnpm build
