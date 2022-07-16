@@ -1,5 +1,32 @@
 import { NpmDependency } from './interfaces';
 
+export const ALLOYIFY_NPM_DEPS: Record<string, NpmDependency> = {
+  COMMON: {
+    name: '@alloyify/common',
+    version: '0.1.1',
+  },
+  CONFIG: {
+    name: '@alloyify/config',
+    version: '0.5.1',
+  },
+  HTTP_SDK: {
+    name: '@alloyify/http-sdk',
+    version: '0.1.1',
+  },
+  MICROSERVICES: {
+    name: '@alloyify/microservices',
+    version: '0.4.0',
+  },
+  NATS_SDK: {
+    name: '@alloyify/nats-sdk',
+    version: '0.1.0',
+  },
+  UTILS: {
+    name: '@alloyify/utils',
+    version: '0.2.0',
+  },
+};
+
 export const NPM_DEPS: Record<string, NpmDependency> = {
   NESTJS_COMMON: {
     name: '@nestjs/common',
@@ -32,14 +59,5 @@ export const NPM_DEPS: Record<string, NpmDependency> = {
   NATS: {
     name: 'nats',
     version: '2.7.1',
-  },
-
-  ALLOYIFY_CONFIG: {
-    name: '@alloyify/config',
-    version: '0.4.3',
-  },
-  ALLOYIFY_MICROSERVICES: {
-    name: '@alloyify/microservices',
-    version: '0.2.3',
   },
 };
