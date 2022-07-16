@@ -1,4 +1,12 @@
-import { addDependencies, convertNxGenerator, getLogger, getPathFromLayout, NPM_DEPS, Tree } from '@alloyify/devkit';
+import {
+  addDependencies,
+  convertNxGenerator,
+  getLogger,
+  getPathFromLayout,
+  ALLOYIFY_NPM_DEPS,
+  NPM_DEPS,
+  Tree,
+} from '@alloyify/devkit';
 import { execSync } from 'child_process';
 import { inspect } from 'util';
 import { ApplicationType } from './constants';
@@ -22,7 +30,7 @@ export async function applicationGenerator(tree: Tree, options: ApplicationGener
   const transformedOptions = transformOptions(validatedOptions, logger);
   const appPath = getPathFromLayout(tree, transformedOptions.directoryName, 'appsDir', logger);
   const depsToInstall = [
-    NPM_DEPS.ALLOYIFY_CONFIG,
+    ALLOYIFY_NPM_DEPS.CONFIG,
     NPM_DEPS.NESTJS_COMMON,
     NPM_DEPS.NESTJS_CORE,
     NPM_DEPS.NESTJS_CONFIG,
@@ -38,14 +46,14 @@ export async function applicationGenerator(tree: Tree, options: ApplicationGener
     case ApplicationType.MICROSERVICE:
       depsToInstall.push(NPM_DEPS.NESTJS_MICROSERVICES);
       depsToInstall.push(NPM_DEPS.NATS);
-      depsToInstall.push(NPM_DEPS.ALLOYIFY_MICROSERVICES);
+      depsToInstall.push(ALLOYIFY_NPM_DEPS.MICROSERVICE);
       break;
 
     case ApplicationType.HYBRID:
       depsToInstall.push(NPM_DEPS.NESTJS_PATFORM_EXPRESS);
       depsToInstall.push(NPM_DEPS.NESTJS_MICROSERVICES);
       depsToInstall.push(NPM_DEPS.NATS);
-      depsToInstall.push(NPM_DEPS.ALLOYIFY_MICROSERVICES);
+      depsToInstall.push(ALLOYIFY_NPM_DEPS.MICROSERVICE);
       break;
 
     default:

@@ -1,4 +1,4 @@
-import { natsConfigGetter } from '@alloyify/microservices';
+import { natsConfigHelper } from '@alloyify/microservices';
 import { APP_NAME } from '../constants';
 
-export const [natsConfig, InjectNatsConfig, getNatsConfig] = natsConfigGetter(APP_NAME);
+export const [natsConfig, InjectNatsConfig, getNatsConfig] = natsConfigHelper(APP_NAME);

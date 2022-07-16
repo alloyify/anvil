@@ -1,7 +1,7 @@
 import { ConfigHelper, ConfigType } from '@alloyify/config';
 import { APP_NAME } from '../constants';
 
-const configGetter = ConfigHelper.create(
+const configHelper = ConfigHelper.create(
   (env) => ({
     identity: env('IDENTITY').required().asString(),
   }),
@@ -9,6 +9,6 @@ const configGetter = ConfigHelper.create(
 );
 
 export const [appConfig] =
-  configGetter(APP_NAME);
+  configHelper(APP_NAME);
 
 export type AppConfig = ConfigType<typeof appConfig>;
