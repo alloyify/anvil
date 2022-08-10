@@ -1,5 +1,12 @@
 # @alloyify/devkit
 
+## 0.4.0
+
+### Minor Changes
+
+- ce2651a: Added Nx application generator
+- 91d4afa: Anvil digest copy command
+
 ## 0.3.1
 
 ### Patch Changes

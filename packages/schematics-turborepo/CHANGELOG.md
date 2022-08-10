@@ -1,5 +1,18 @@
 # @alloyify/schematics-turborepo
 
+## 0.4.0
+
+### Minor Changes
+
+- ce2651a: Added Nx application generator
+- 91d4afa: Anvil digest copy command
+
+### Patch Changes
+
+- Updated dependencies [ce2651a]
+- Updated dependencies [91d4afa]
+  - @alloyify/devkit@0.4.0
+
 ## 0.3.1
 
 ### Patch Changes
