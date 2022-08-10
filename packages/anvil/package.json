@@ -34,6 +34,7 @@
     "@alloyify/schematics-turborepo": "workspace:0.3.1",
     "@alloyify/utils": "0.1.0",
     "commander": "9.2.0",
+    "cpx": "1.5.0",
     "inquirer": "8.2.4",
     "lodash": "4.17.21",
     "symlink-dir": "5.0.1",

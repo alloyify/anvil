@@ -46,14 +46,14 @@ export async function applicationGenerator(tree: Tree, options: ApplicationGener
     case ApplicationType.MICROSERVICE:
       depsToInstall.push(NPM_DEPS.NESTJS_MICROSERVICES);
       depsToInstall.push(NPM_DEPS.NATS);
-      depsToInstall.push(ALLOYIFY_NPM_DEPS.MICROSERVICE);
+      depsToInstall.push(ALLOYIFY_NPM_DEPS.MICROSERVICES);
       break;
 
     case ApplicationType.HYBRID:
       depsToInstall.push(NPM_DEPS.NESTJS_PATFORM_EXPRESS);
       depsToInstall.push(NPM_DEPS.NESTJS_MICROSERVICES);
       depsToInstall.push(NPM_DEPS.NATS);
-      depsToInstall.push(ALLOYIFY_NPM_DEPS.MICROSERVICE);
+      depsToInstall.push(ALLOYIFY_NPM_DEPS.MICROSERVICES);
       break;
 
     default:
