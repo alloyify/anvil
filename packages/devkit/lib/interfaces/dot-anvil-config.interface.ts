@@ -15,6 +15,8 @@ export interface DotAnvilConfigMonorepoPackage {
 }
 
 export interface DotAnvilConfig {
-  packages: DotAnvilConfigMonorepoPackage[];
-  targets: DotAnvilConfigTarget[];
+  digest: {
+    packages: DotAnvilConfigMonorepoPackage[];
+    targets: DotAnvilConfigTarget[];
+  };
 }

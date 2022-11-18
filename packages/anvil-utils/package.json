@@ -1,0 +1,28 @@
+{
+  "name": "@alloyify/anvil-utils",
+  "description": "",
+  "version": "0.4.0",
+  "license": "LICENCE",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "repository": "https://github.com/alloyify/anvil",
+  "publishConfig": {
+    "access": "restricted"
+  },
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md",
+    "CHANGELOG.md"
+  ],
+  "author": {
+    "name": "Mykhaylo Yali",
+    "email": "mihon4ik@gmail.com"
+  },
+  "scripts": {
+    "build": "tsc",
+    "lint": "eslint . --fix",
+    "test": "jest"
+  },
+  "dependencies": {}
+}

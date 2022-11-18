@@ -1,5 +1,5 @@
 import { AnvilConfig, CwdConfigs, DotAnvilConfig } from '@alloyify/devkit';
-import { isArrayFull, isStringFull } from '@alloyify/utils';
+import { isArrayFull, isStringFull } from '@alloyify/anvil-utils';
 import { execSync } from 'child_process';
 import { Command } from 'commander';
 import { existsSync } from 'fs';
@@ -24,35 +24,37 @@ export class RunTurborepoDigestCommand {
         const { anvilConfig, dotAnvilConfig, workspacesList } = cwdConfigs;
         const names = this.getPackageNames(packageNames);
 
-        if (isArrayFull(dotAnvilConfig.targets) && isArrayFull(dotAnvilConfig.packages)) {
+        if (isArrayFull(dotAnvilConfig?.digest?.targets) && isArrayFull(dotAnvilConfig?.digest?.packages)) {
           const scope = anvilConfig?.generators?.package?.scope;
           const toInstall: Record<string, { path: string; cmd: string }> = {};
           let toRemoveCmd = '';
 
-          dotAnvilConfig.packages.forEach((pkg) => {
+          dotAnvilConfig.digest.packages.forEach((pkg) => {
             pkg.targets.forEach(async (targetName) => {
-              if (options.install && this.runForPackage(names, pkg.name)) {
-                const fullPackageName = `${scope ? `@${scope}/${pkg.name}` : pkg.name}@latest`;
-                const packageTragetPath = this.getTargetPath(targetName, pkg.name, dotAnvilConfig, anvilConfig);
+              if (this.runForPackage(names, pkg.name)) {
+                if (options.install) {
+                  const fullPackageName = `${scope ? `@${scope}/${pkg.name}` : pkg.name}@latest`;
+                  const packageTragetPath = this.getTargetPath(targetName, pkg.name, dotAnvilConfig, anvilConfig);
 
-                if (packageTragetPath) {
-                  toRemoveCmd = !toRemoveCmd
-                    ? `npx rimraf ${packageTragetPath}`
-                    : `${toRemoveCmd} ${packageTragetPath}`;
-                }
+                  if (packageTragetPath) {
+                    toRemoveCmd = !toRemoveCmd
+                      ? `npx rimraf ${packageTragetPath}`
+                      : `${toRemoveCmd} ${packageTragetPath}`;
+                  }
 
-                if (!toInstall[targetName]) {
-                  toInstall[targetName] = {
-                    path: dotAnvilConfig.targets.find((one) => one.name === targetName)?.path,
-                    cmd: `pnpm -w add ${fullPackageName}`,
-                  };
+                  if (!toInstall[targetName]) {
+                    toInstall[targetName] = {
+                      path: dotAnvilConfig.digest.targets.find((one) => one.name === targetName)?.path,
+                      cmd: `pnpm -w add ${fullPackageName}`,
+                    };
+                  } else {
+                    toInstall[targetName].cmd += ` ${fullPackageName}`;
+                  }
+                } else if (options.copy) {
+                  this.copyPackage(targetName, pkg.name, dotAnvilConfig, anvilConfig, workspacesList);
                 } else {
-                  toInstall[targetName].cmd += ` ${fullPackageName}`;
+                  await this.createPackageSymlink(targetName, pkg.name, dotAnvilConfig, anvilConfig, workspacesList);
                 }
-              } else if (options.copy && this.runForPackage(names, pkg.name)) {
-                this.copyPackage(targetName, pkg.name, dotAnvilConfig, anvilConfig, workspacesList);
-              } else {
-                await this.createPackageSymlink(targetName, pkg.name, dotAnvilConfig, anvilConfig, workspacesList);
               }
             });
           });
@@ -130,7 +132,7 @@ export class RunTurborepoDigestCommand {
     dotAnvilConfig: DotAnvilConfig,
     anvilConfig: AnvilConfig,
   ): string {
-    const target = dotAnvilConfig.targets.find((one) => one.name === targetName);
+    const target = dotAnvilConfig.digest.targets.find((one) => one.name === targetName);
     const scope = anvilConfig?.generators?.package?.scope;
 
     return target ? join(target.path, 'node_modules', scope ? `@${scope}` : '', packageName) : null;
