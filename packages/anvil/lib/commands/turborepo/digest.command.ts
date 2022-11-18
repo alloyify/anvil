@@ -1,5 +1,5 @@
 import { AnvilConfig, CwdConfigs, DotAnvilConfig } from '@alloyify/devkit';
-import { isArrayFull, isStringFull } from '@alloyify/utils';
+import { isArrayFull, isStringFull } from '@alloyify/anvil-utils';
 import { execSync } from 'child_process';
 import { Command } from 'commander';
 import { existsSync } from 'fs';

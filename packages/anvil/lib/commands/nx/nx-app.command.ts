@@ -5,7 +5,7 @@ import {
   APPLICATION_TYPE_CHOICES,
   ApplicationType,
 } from '@alloyify/schematics-nx';
-import { isIn } from '@alloyify/utils';
+import { isIn } from '@alloyify/anvil-utils';
 import { Command } from 'commander';
 import deepMerge from 'ts-deepmerge';
 import * as inquirer from 'inquirer';
