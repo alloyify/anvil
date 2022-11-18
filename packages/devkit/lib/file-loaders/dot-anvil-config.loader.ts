@@ -17,36 +17,42 @@ export function validateDotAnvilConfig(dotAnvilConfig: DotAnvilConfig, logger: L
   const schema = {
     type: 'object',
     properties: {
-      targets: {
-        type: 'array',
-        minItems: 0,
-        items: {
-          type: 'object',
-          properties: {
-            name: { type: 'string' },
-            path: { type: 'string' },
-            type: { type: 'string' },
-          },
-          required: ['name', 'path', 'type'],
-          additionalProperties: false,
-        },
-      },
-      packages: {
-        type: 'array',
-        minItems: 0,
-        items: {
-          type: 'object',
-          properties: {
-            name: { type: 'string' },
-            targets: {
-              type: 'array',
-              minItems: 0,
-              items: { type: 'string' },
+      digest: {
+        type: 'object',
+        properties: {
+          targets: {
+            type: 'array',
+            minItems: 0,
+            items: {
+              type: 'object',
+              properties: {
+                name: { type: 'string' },
+                path: { type: 'string' },
+                type: { type: 'string' },
+              },
+              required: ['name', 'path', 'type'],
+              additionalProperties: false,
             },
           },
-          required: ['name', 'targets'],
-          additionalProperties: false,
+          packages: {
+            type: 'array',
+            minItems: 0,
+            items: {
+              type: 'object',
+              properties: {
+                name: { type: 'string' },
+                targets: {
+                  type: 'array',
+                  minItems: 0,
+                  items: { type: 'string' },
+                },
+              },
+              required: ['name', 'targets'],
+              additionalProperties: false,
+            },
+          },
         },
+        additionalProperties: false,
       },
     },
     additionalProperties: false,
