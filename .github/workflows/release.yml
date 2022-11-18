@@ -2,7 +2,10 @@ name: Release
 
 on:
   pull_request:
-    types: [closed]
+    types:
+      - closed
+    branches:
+      - main
 
 env:
   CI: true
@@ -10,7 +13,7 @@ env:
 
 jobs:
   release:
-    if: github.event.pull_request.merged && (startsWith(github.head_ref, 'release') || startsWith(github.head_ref, 'changeset-release'))
+    if: github.event.pull_request.merged
     runs-on: ubuntu-latest
 
     steps:
