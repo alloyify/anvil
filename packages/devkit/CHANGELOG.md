@@ -1,5 +1,15 @@
 # @alloyify/devkit
 
+## 0.5.0
+
+### Minor Changes
+
+- 0a07b26: Updated digest
+
+### Patch Changes
+
+- 663410f: Added anvil-utils
+
 ## 0.4.0
 
 ### Minor Changes

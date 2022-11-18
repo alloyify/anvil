@@ -70,7 +70,7 @@ importers:
       prettier: 2.6.2
       pretty-quick: 3.1.3_prettier@2.6.2
       rimraf: 3.0.2
-      ts-jest: 27.1.4_53ggqi2i4rbcfjtktmjua6zili
+      ts-jest: 27.1.4_35obefqjnen327nlgsxw7rkz2m
       ts-node: 10.7.0_obw5lm6bnftkuhtgsmfxzsamfm
       tsconfig-extends: 1.0.1
       tslib: 2.4.0
@@ -79,10 +79,10 @@ importers:
 
   packages/anvil:
     specifiers:
-      '@alloyify/anvil-utils': workspace:0.4.0
-      '@alloyify/devkit': workspace:0.4.0
-      '@alloyify/schematics-nx': workspace:0.4.0
-      '@alloyify/schematics-turborepo': workspace:0.4.0
+      '@alloyify/anvil-utils': workspace:0.4.1
+      '@alloyify/devkit': workspace:0.5.0
+      '@alloyify/schematics-nx': workspace:0.5.0
+      '@alloyify/schematics-turborepo': workspace:0.5.0
       commander: 9.2.0
       cpx: 1.5.0
       inquirer: 8.2.4
@@ -149,7 +149,7 @@ importers:
 
   packages/schematics-nx:
     specifiers:
-      '@alloyify/devkit': workspace:0.4.0
+      '@alloyify/devkit': workspace:0.5.0
       lodash: 4.17.21
     dependencies:
       '@alloyify/devkit': link:../devkit
@@ -157,7 +157,7 @@ importers:
 
   packages/schematics-turborepo:
     specifiers:
-      '@alloyify/devkit': workspace:0.4.0
+      '@alloyify/devkit': workspace:0.5.0
       lodash: 4.17.21
     dependencies:
       '@alloyify/devkit': link:../devkit
@@ -2660,7 +2660,7 @@ packages:
     resolution: {integrity: sha512-Rd3se6QB+sO1TwqZjscQrurpEPIfO0/yYnSin6Q/rD3mOutHvUrCAhJub3r90uNb+SESBuE0QYoB90YdfatsRg==}
 
   /concat-map/0.0.1:
-    resolution: {integrity: sha1-2Klr13/Wjfd5OnMDajug1UBdR3s=}
+    resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
 
   /confusing-browser-globals/1.0.11:
     resolution: {integrity: sha512-JsPKdmh8ZkmnHxDk55FZ1TqVLvEQTvoByJZRN9jzI0UjxK/QgAmsphz7PGtqgPieQZ/CQcHWXCR7ATDNhGe+YA==}
@@ -7814,7 +7814,7 @@ packages:
     resolution: {integrity: sha512-2RpGIE0YVW6blKY756MP74czemC9x4XThhNCxq0A14Owm3ac8tZvigPbpZyZZQSyfOc7Qba5kG5xKBq74ihZfA==}
     dev: false
 
-  /ts-jest/27.1.4_53ggqi2i4rbcfjtktmjua6zili:
+  /ts-jest/27.1.4_35obefqjnen327nlgsxw7rkz2m:
     resolution: {integrity: sha512-qjkZlVPWVctAezwsOD1OPzbZ+k7zA5z3oxII4dGdZo5ggX/PL7kvwTM0pXTr10fAtbiVpJaL3bWd502zAhpgSQ==}
     engines: {node: ^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0}
     hasBin: true
@@ -7835,6 +7835,7 @@ packages:
       esbuild:
         optional: true
     dependencies:
+      '@babel/core': 7.20.2
       '@types/jest': 27.4.1
       bs-logger: 0.2.6
       fast-json-stable-stringify: 2.1.0

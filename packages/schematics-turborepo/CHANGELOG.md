@@ -1,5 +1,18 @@
 # @alloyify/schematics-turborepo
 
+## 0.5.0
+
+### Minor Changes
+
+- 0a07b26: Updated digest
+
+### Patch Changes
+
+- 663410f: Added anvil-utils
+- Updated dependencies [663410f]
+- Updated dependencies [0a07b26]
+  - @alloyify/devkit@0.5.0
+
 ## 0.4.0
 
 ### Minor Changes
