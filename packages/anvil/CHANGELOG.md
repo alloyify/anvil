@@ -1,5 +1,19 @@
 # @alloyify/anvil
 
+## 1.1.0
+
+### Minor Changes
+
+- 7c5710f: Public versions
+
+### Patch Changes
+
+- Updated dependencies [7c5710f]
+  - @alloyify/anvil-utils@1.1.0
+  - @alloyify/devkit@1.1.0
+  - @alloyify/schematics-nx@1.1.0
+  - @alloyify/schematics-turborepo@1.1.0
+
 ## 1.0.1
 
 ### Patch Changes
