@@ -1,5 +1,13 @@
 # @alloyify/schematics-nx
 
+## 1.0.1
+
+### Patch Changes
+
+- 2e84e93: Updated versions
+- Updated dependencies [2e84e93]
+  - @alloyify/devkit@1.0.1
+
 ## 1.0.0
 
 ### Major Changes

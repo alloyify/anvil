@@ -1,5 +1,16 @@
 # @alloyify/anvil
 
+## 1.0.1
+
+### Patch Changes
+
+- 2e84e93: Updated versions
+- Updated dependencies [2e84e93]
+  - @alloyify/schematics-turborepo@1.0.1
+  - @alloyify/anvil-utils@1.0.1
+  - @alloyify/devkit@1.0.1
+  - @alloyify/schematics-nx@1.0.1
+
 ## 1.0.0
 
 ### Major Changes
