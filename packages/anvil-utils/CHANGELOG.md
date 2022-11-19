@@ -1,5 +1,11 @@
 # @alloyify/anvil-utils
 
+## 1.1.0
+
+### Minor Changes
+
+- 7c5710f: Public versions
+
 ## 1.0.1
 
 ### Patch Changes
