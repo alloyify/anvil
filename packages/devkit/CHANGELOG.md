@@ -1,5 +1,11 @@
 # @alloyify/devkit
 
+## 1.1.1
+
+### Patch Changes
+
+- 883bd61: Bump versions
+
 ## 1.1.0
 
 ### Minor Changes
