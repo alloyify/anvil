@@ -1,5 +1,16 @@
 # @alloyify/schematics-turborepo
 
+## 1.0.0
+
+### Major Changes
+
+- 46e90dc: First major version
+
+### Patch Changes
+
+- Updated dependencies [46e90dc]
+  - @alloyify/devkit@1.0.0
+
 ## 0.5.0
 
 ### Minor Changes
