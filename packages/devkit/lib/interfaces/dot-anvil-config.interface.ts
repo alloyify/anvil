@@ -1,3 +1,5 @@
+import { PackageAccess, PackageRegistry } from '../constants';
+
 export enum DotAnvilConfigTargetType {
   NX = 'nx',
   TURBOREPO = 'turborepo',
@@ -14,8 +16,24 @@ export interface DotAnvilConfigMonorepoPackage {
   targets: string[];
 }
 
+export interface DotAnvilConfigGeneratorsPackage {
+  scope?: string;
+  access?: PackageAccess;
+  registry?: PackageRegistry;
+  license?: string;
+  author?: {
+    name?: string;
+    email?: string;
+  };
+}
+
+export interface DotAnvilConfigGenerators {
+  package?: DotAnvilConfigGeneratorsPackage;
+}
+
 export interface DotAnvilConfig {
-  digest: {
+  generators?: DotAnvilConfigGenerators;
+  digest?: {
     packages: DotAnvilConfigMonorepoPackage[];
     targets: DotAnvilConfigTarget[];
   };

@@ -1,5 +1,4 @@
 import { getWorkspacesList } from '../pnpm';
-import { loadAnvilConfig } from './anvil-config.loader';
 import { loadDotAnvilConfig } from './dot-anvil-config.loader';
 import { loadNxJson, loadNxWorkspaceJson, loadPackageJson, loadTurboJson } from './json.loaders';
 import { loadPnpmYaml } from './yaml.loaders';
@@ -13,7 +12,6 @@ export function loadCwdConfigs(cwd: string, logger: Logger): CwdConfigs {
   logger.debug(`loading CWD configs ${cwd}`);
 
   configs.packageJson = loadPackageJson(cwd, logger);
-  configs.anvilConfig = loadAnvilConfig(cwd, logger);
   configs.dotAnvilConfig = loadDotAnvilConfig(cwd, logger);
   configs.nxJson = loadNxJson(cwd, logger);
   configs.nxWorkspaceJson = loadNxWorkspaceJson(cwd, logger);
