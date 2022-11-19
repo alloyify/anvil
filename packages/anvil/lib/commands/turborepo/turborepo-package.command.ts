@@ -54,15 +54,15 @@ export class GenerateTurborepoPackageCommand {
   ): Promise<PackageGeneratorOptions> {
     logger.debug('promptOptions');
 
-    const fromAnvilConfig = cwdConfigs.anvilConfig.generators.package;
+    const fromAnvilConfig = cwdConfigs.dotAnvilConfig?.generators?.package ?? {};
     const defaultOptions: Partial<PackageGeneratorOptions> = {
       packageName: packageName ?? '',
       workspace: resolveWorkspace(cwdConfigs.workspacesList, options.workspace, logger),
       scope: fromAnvilConfig.scope,
       access: resolvePackageAccess(fromAnvilConfig, options.access, logger),
       license: fromAnvilConfig.license,
-      authorName: fromAnvilConfig.author.name,
-      authorEmail: fromAnvilConfig.author.email,
+      authorName: fromAnvilConfig.author?.name ?? '',
+      authorEmail: fromAnvilConfig.author?.email ?? '',
     };
     const questions: inquirer.Question[] = [];
 

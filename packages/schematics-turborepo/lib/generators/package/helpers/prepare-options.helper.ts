@@ -23,7 +23,7 @@ export function validateOptions(options: PackageGeneratorOptions, logger: Logger
   logger.debug(`CWD ${options.cwd}`);
 
   options.cwdConfigs = getCwdConfigs(options, logger);
-  const fromAnvilConfig = options.cwdConfigs.anvilConfig.generators.package;
+  const fromAnvilConfig = options.cwdConfigs.dotAnvilConfig?.generators?.package ?? {};
 
   if (!options.cwdConfigs.turboJson) {
     logger.error('Current working directory is not a Turborepo');
@@ -34,8 +34,8 @@ export function validateOptions(options: PackageGeneratorOptions, logger: Logger
   options.scope = !isNil(options.scope) ? options.scope : fromAnvilConfig.scope;
   options.license = !isNil(options.license) ? options.license : fromAnvilConfig.license;
   options.access = !isNil(options.access) ? options.access : fromAnvilConfig.access;
-  options.authorName = !isNil(options.authorName) ? options.authorName : fromAnvilConfig.author.name;
-  options.authorEmail = !isNil(options.authorEmail) ? options.authorEmail : fromAnvilConfig.author.email;
+  options.authorName = !isNil(options.authorName) ? options.authorName : fromAnvilConfig.author?.name ?? '';
+  options.authorEmail = !isNil(options.authorEmail) ? options.authorEmail : fromAnvilConfig.author?.email ?? '';
   options.repository = options.cwdConfigs.packageJson.repository ?? '';
 
   return options;
