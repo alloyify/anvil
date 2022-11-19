@@ -1,7 +1,7 @@
 {
   "name": "@alloyify/anvil-utils",
   "description": "",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "LICENCE",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",

@@ -1,5 +1,11 @@
 # @alloyify/devkit
 
+## 1.0.1
+
+### Patch Changes
+
+- 2e84e93: Updated versions
+
 ## 1.0.0
 
 ### Major Changes
