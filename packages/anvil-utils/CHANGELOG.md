@@ -1,5 +1,11 @@
 # @alloyify/anvil-utils
 
+## 1.0.1
+
+### Patch Changes
+
+- af783cb: Fixed config loader
+
 ## 1.0.0
 
 ### Major Changes

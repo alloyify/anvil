@@ -1,5 +1,16 @@
 # @alloyify/anvil
 
+## 1.0.1
+
+### Patch Changes
+
+- af783cb: Fixed config loader
+- Updated dependencies [af783cb]
+  - @alloyify/anvil-utils@1.0.1
+  - @alloyify/devkit@1.0.1
+  - @alloyify/schematics-nx@1.0.1
+  - @alloyify/schematics-turborepo@1.0.1
+
 ## 1.0.0
 
 ### Major Changes
