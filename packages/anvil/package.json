@@ -7,7 +7,7 @@
   "typings": "dist/index.d.ts",
   "repository": "https://github.com/alloyify/anvil",
   "publishConfig": {
-    "access": "restricted"
+    "access": "public"
   },
   "bin": {
     "anvil": "dist/bin/anvil.js"
