@@ -30,7 +30,7 @@ export function validateDotAnvilConfig(dotAnvilConfig: DotAnvilConfig, logger: L
   logger.debug('validateDotAnvilConfig');
 
   if (!dotAnvilConfig) {
-    return undefined;
+    return {};
   }
 
   const ajv = new Ajv();
