@@ -1,7 +1,7 @@
 {
   "name": "@alloyify/schematics-turborepo",
   "description": "Alloyify Turborepo Schematics package",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "license": "LICENCE",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -28,7 +28,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@alloyify/devkit": "workspace:1.1.1",
+    "@alloyify/devkit": "workspace:1.1.2",
     "lodash": "4.17.21"
   }
 }
