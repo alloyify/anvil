@@ -1,5 +1,11 @@
 # @alloyify/anvil-utils
 
+## 1.1.4
+
+### Patch Changes
+
+- 54630d5: Versions bump
+
 ## 1.1.3
 
 ### Patch Changes

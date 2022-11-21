@@ -1,5 +1,13 @@
 # @alloyify/schematics-turborepo
 
+## 1.1.4
+
+### Patch Changes
+
+- 54630d5: Versions bump
+- Updated dependencies [54630d5]
+  - @alloyify/devkit@1.1.4
+
 ## 1.1.3
 
 ### Patch Changes
