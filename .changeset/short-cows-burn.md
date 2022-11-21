@@ -6,4 +6,4 @@
 '@alloyify/schematics-turborepo': patch
 ---
 
-Fixed digest command
+Versions bump
