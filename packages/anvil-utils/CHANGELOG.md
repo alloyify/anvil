@@ -1,5 +1,11 @@
 # @alloyify/anvil-utils
 
+## 1.1.3
+
+### Patch Changes
+
+- 1d44ed7: Updated digest command and .anvil config
+
 ## 1.1.2
 
 ### Patch Changes
