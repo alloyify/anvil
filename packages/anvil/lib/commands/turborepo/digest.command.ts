@@ -1,4 +1,4 @@
-import { AnvilConfig, CwdConfigs, DotAnvilConfig } from '@alloyify/devkit';
+import { CwdConfigs, DotAnvilConfig } from '@alloyify/devkit';
 import { isArrayFull, isStringFull } from '@alloyify/anvil-utils';
 import { execSync } from 'child_process';
 import { Command } from 'commander';
@@ -21,11 +21,11 @@ export class RunTurborepoDigestCommand {
       .action(async (packageNames: string, options: RunTurborepoDigestOptions) => {
         logger.info('running Turborepo digest');
 
-        const { anvilConfig, dotAnvilConfig, workspacesList } = cwdConfigs;
+        const { dotAnvilConfig, workspacesList } = cwdConfigs;
         const names = this.getPackageNames(packageNames);
 
         if (isArrayFull(dotAnvilConfig?.digest?.targets) && isArrayFull(dotAnvilConfig?.digest?.packages)) {
-          const scope = anvilConfig?.generators?.package?.scope;
+          const scope = dotAnvilConfig?.generators?.package?.scope;
           const toInstall: Record<string, { path: string; cmd: string }> = {};
           let toRemoveCmd = '';
 
@@ -34,7 +34,7 @@ export class RunTurborepoDigestCommand {
               if (this.runForPackage(names, pkg.name)) {
                 if (options.install) {
                   const fullPackageName = `${scope ? `@${scope}/${pkg.name}` : pkg.name}@latest`;
-                  const packageTragetPath = this.getTargetPath(targetName, pkg.name, dotAnvilConfig, anvilConfig);
+                  const packageTragetPath = this.getTargetPath(targetName, pkg.name, dotAnvilConfig);
 
                   if (packageTragetPath) {
                     toRemoveCmd = !toRemoveCmd
@@ -51,9 +51,9 @@ export class RunTurborepoDigestCommand {
                     toInstall[targetName].cmd += ` ${fullPackageName}`;
                   }
                 } else if (options.copy) {
-                  this.copyPackage(targetName, pkg.name, dotAnvilConfig, anvilConfig, workspacesList);
+                  this.copyPackage(targetName, pkg.name, dotAnvilConfig, workspacesList);
                 } else {
-                  await this.createPackageSymlink(targetName, pkg.name, dotAnvilConfig, anvilConfig, workspacesList);
+                  await this.createPackageSymlink(targetName, pkg.name, dotAnvilConfig, workspacesList);
                 }
               }
             });
@@ -94,11 +94,10 @@ export class RunTurborepoDigestCommand {
     targetName: string,
     packageName: string,
     dotAnvilConfig: DotAnvilConfig,
-    anvilConfig: AnvilConfig,
     workspacesList: string[],
   ) {
     const packagePath = this.getPackagePath(packageName, workspacesList);
-    const packageTragetPath = this.getTargetPath(targetName, packageName, dotAnvilConfig, anvilConfig);
+    const packageTragetPath = this.getTargetPath(targetName, packageName, dotAnvilConfig);
 
     if (packageTragetPath) {
       execSync(`npx rimraf ${packageTragetPath}`, {
@@ -115,10 +114,9 @@ export class RunTurborepoDigestCommand {
     targetName: string,
     packageName: string,
     dotAnvilConfig: DotAnvilConfig,
-    anvilConfig: AnvilConfig,
     workspacesList: string[],
   ) {
-    const tragetPath = this.getTargetPath(targetName, packageName, dotAnvilConfig, anvilConfig);
+    const tragetPath = this.getTargetPath(targetName, packageName, dotAnvilConfig);
     const packagePath = this.getPackagePath(packageName, workspacesList);
 
     if (tragetPath && packagePath) {
@@ -126,14 +124,9 @@ export class RunTurborepoDigestCommand {
     }
   }
 
-  private static getTargetPath(
-    targetName: string,
-    packageName: string,
-    dotAnvilConfig: DotAnvilConfig,
-    anvilConfig: AnvilConfig,
-  ): string {
+  private static getTargetPath(targetName: string, packageName: string, dotAnvilConfig: DotAnvilConfig): string {
     const target = dotAnvilConfig.digest.targets.find((one) => one.name === targetName);
-    const scope = anvilConfig?.generators?.package?.scope;
+    const scope = dotAnvilConfig?.generators?.package?.scope;
 
     return target ? join(target.path, 'node_modules', scope ? `@${scope}` : '', packageName) : null;
   }
