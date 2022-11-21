@@ -75,7 +75,7 @@ export function validateDotAnvilConfig(dotAnvilConfig: DotAnvilConfig, logger: L
                 path: { type: 'string' },
                 type: { type: 'string' },
               },
-              required: ['name', 'path', 'type'],
+              required: ['name', 'path'],
               additionalProperties: false,
             },
           },
