@@ -79,10 +79,10 @@ importers:
 
   packages/anvil:
     specifiers:
-      '@alloyify/anvil-utils': workspace:1.1.2
-      '@alloyify/devkit': workspace:1.1.2
-      '@alloyify/schematics-nx': workspace:1.1.2
-      '@alloyify/schematics-turborepo': workspace:1.1.2
+      '@alloyify/anvil-utils': workspace:1.1.3
+      '@alloyify/devkit': workspace:1.1.3
+      '@alloyify/schematics-nx': workspace:1.1.3
+      '@alloyify/schematics-turborepo': workspace:1.1.3
       commander: 9.2.0
       cpx: 1.5.0
       inquirer: 8.2.4
@@ -149,7 +149,7 @@ importers:
 
   packages/schematics-nx:
     specifiers:
-      '@alloyify/devkit': workspace:1.1.2
+      '@alloyify/devkit': workspace:1.1.3
       lodash: 4.17.21
     dependencies:
       '@alloyify/devkit': link:../devkit
@@ -157,7 +157,7 @@ importers:
 
   packages/schematics-turborepo:
     specifiers:
-      '@alloyify/devkit': workspace:1.1.2
+      '@alloyify/devkit': workspace:1.1.3
       lodash: 4.17.21
     dependencies:
       '@alloyify/devkit': link:../devkit
